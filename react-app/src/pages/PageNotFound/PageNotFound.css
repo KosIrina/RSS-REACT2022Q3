@@ -1,0 +1,20 @@
+.not-found-page__greeting,
+.not-found-page__info {
+  text-align: center;
+}
+
+.not-found-page__greeting {
+  margin-top: 0;
+}
+
+.not-found-page__info {
+  margin: 10px 0;
+}
+
+.not-found-page__ghost {
+  margin: 0 auto;
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin-top: -40px;
+}
