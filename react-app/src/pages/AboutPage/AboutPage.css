@@ -1,0 +1,19 @@
+.about-page__greeting,
+.about-page__app-description,
+.about-page__app-info {
+  margin: 15px;
+  text-align: center;
+}
+
+.about-page__greeting {
+  font-size: 22px;
+}
+
+.about-page__gihtub-link {
+  font-style: italic;
+  transition: 1s;
+}
+
+.about-page__gihtub-link:hover {
+  color: #fff;
+}
