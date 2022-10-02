@@ -29,7 +29,21 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(to left bottom, #c468ff, #ae7eff, #9b8fff, #8d9cff, #87a8ff, #97a9fd, #a5aafb, #b1abf9, #cca3ee, #e39cdf, #f496cc, #ff93b7);
+  background-image: linear-gradient(
+    to left bottom,
+    #c468ff,
+    #ae7eff,
+    #9b8fff,
+    #8d9cff,
+    #87a8ff,
+    #97a9fd,
+    #a5aafb,
+    #b1abf9,
+    #cca3ee,
+    #e39cdf,
+    #f496cc,
+    #ff93b7
+  );
   font-family: Josefin, sans-serif;
   font-weight: 400;
   font-size: 20px;
