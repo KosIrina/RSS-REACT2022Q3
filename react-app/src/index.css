@@ -1,0 +1,38 @@
+@import-normalize;
+
+@font-face {
+  font-family: 'Josefin';
+  src: url('./assets/fonts/JosefinSans-Regular.woff2') format('woff2'),
+    url('./assets/fonts/JosefinSans-Regular.woff') format('woff'),
+    url('./assets/fonts/JosefinSans-Regular.ttf') format('ttf');
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to left bottom, #c468ff, #ae7eff, #9b8fff, #8d9cff, #87a8ff, #97a9fd, #a5aafb, #b1abf9, #cca3ee, #e39cdf, #f496cc, #ff93b7);
+  font-family: Josefin, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: left;
+  color: #353535;
+}
