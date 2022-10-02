@@ -1,0 +1,116 @@
+.ghost,
+.ghost-legs {
+  width: 50%;
+  height: 53%;
+  left: 25%;
+  top: 10%;
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+  background: #ededed;
+  border: 1px solid #8a8a8a;
+  border-bottom: none;
+  animation: float 2s ease-out infinite;
+}
+
+.ghost-legs {
+  z-index: 0;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  top: 20%;
+}
+
+.eye-left,
+.eye-right {
+  position: absolute;
+  background: #353535;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  top: 40%;
+}
+
+.eye-left {
+  left: 25%;
+}
+
+.eye-right {
+  right: 25%;
+}
+
+.mouth {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  width: 10px;
+  height: 10px;
+  border: 3px solid;
+  border-radius: 50%;
+  border-color: transparent #353535 #353535 transparent;
+  transform: rotate(45deg);
+}
+
+.one,
+.two,
+.three,
+.four {
+  position: absolute;
+  background: #ededed;
+  top: 85%;
+  width: 25%;
+  height: 23%;
+  border: 1px solid #8a8a8a;
+  z-index: 0;
+}
+
+.one {
+  border-radius: 0 0 100% 30%;
+  left: -1px;
+}
+
+.two {
+  left: 23%;
+  border-radius: 0 0 50% 50%;
+}
+
+.three {
+  left: 50%;
+  border-radius: 0 0 50% 50%;
+}
+
+.four {
+  left: 75%;
+  border-radius: 0 0 30% 100%;
+}
+
+.ghost-shadow {
+  position: absolute;
+  width: 30%;
+  height: 7%;
+  background: #8a8a8a;
+  left: 35%;
+  top: 80%;
+  border-radius: 50%;
+  animation: scale 2s infinite;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  50% {
+     transform: translateY(15px);
+  }
+}
