@@ -2,7 +2,7 @@ import React from 'react';
 import './PageNotFound.css';
 import Ghost from '../../components/Ghost';
 
-const PageNotFound = () => {
+const PageNotFound = (): JSX.Element => {
   return (
     <>
       <h2 className="not-found-page__greeting">404 PAGE NOT FOUND</h2>

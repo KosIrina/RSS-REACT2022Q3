@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import './Layout.css';
 
-const Layout = () => {
+const Layout = (): JSX.Element => {
   return (
     <>
       <header className="header container">

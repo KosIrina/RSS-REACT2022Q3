@@ -18,7 +18,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     this.setState({ inputValue: event.target.value });
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <>
         <form className="main-page__search-form">

@@ -1,7 +1,7 @@
 import React from 'react';
 import './AboutPage.css';
 
-const AboutPage = () => {
+const AboutPage = (): JSX.Element => {
   return (
     <>
       <h2 className="about-page__greeting">Welcome to Rick and Morty Characters!</h2>

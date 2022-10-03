@@ -1,7 +1,7 @@
 import React from 'react';
 import './Ghost.css';
 
-const Ghost = () => {
+const Ghost = (): JSX.Element => {
   return (
     <>
       <div className="ghost-legs">

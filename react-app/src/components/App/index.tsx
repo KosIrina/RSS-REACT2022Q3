@@ -5,7 +5,7 @@ import MainPage from '../../pages/MainPage';
 import AboutPage from '../../pages/AboutPage';
 import PageNotFound from '../../pages/PageNotFound';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
       <Routes>
