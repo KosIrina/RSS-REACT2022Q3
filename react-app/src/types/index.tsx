@@ -34,3 +34,11 @@ export interface ICardItemProps {
 export interface ICardListProps {
   characters: IData;
 }
+
+export interface ILocalStorage {
+  getItem(key: string): string;
+  setItem(key: string, value: string): void;
+  clear(): void;
+  removeItem(key: string): void;
+  getAll(): Record<string, string>;
+}
