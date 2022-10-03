@@ -1,12 +1,12 @@
 import React from 'react';
-import { CardListProps, IDataElement } from 'types';
+import { ICardListProps, IDataElement } from 'types';
 import './CardList.css';
 import CardItem from '../CardItem';
 
-const CardList = (props: CardListProps): JSX.Element => {
+const CardList = (props: ICardListProps): JSX.Element => {
   const characters = props.characters;
   return (
-    <ul className="main-page__cards-list">
+    <ul className="main-page__cards-list" data-testid="main-page-characters-list">
       {characters.map(
         (character: IDataElement): JSX.Element => (
           <CardItem key={character.id.toString()} character={character} />
