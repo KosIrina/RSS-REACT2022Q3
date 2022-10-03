@@ -5,7 +5,8 @@
   }
 
   .App > .main {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 125px);
+    height: fit-content;
   }
 }
 
@@ -27,7 +28,8 @@
   }
 
   .App > .main {
-    height: calc(100vh - 119px);
+    min-height: calc(100vh - 169px);
+    height: fit-content;
   }
 }
 
@@ -50,15 +52,14 @@
   position: relative;
   margin: 0;
   margin-left: 50px;
-  font-size: inherit;
-  font-weight: 600;
-  font-style: italic;
+  font-family: HitchHike, sans-serif;
+  font-size: 40px;
 }
 
 .header__logo::before {
   content: '';
   position: absolute;
-  top: -10px;
+  top: 0;
   left: -50px;
   width: 45px;
   height: 45px;
@@ -111,5 +112,6 @@
   row-gap: 15px;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 56px);
+  min-height: calc(100vh - 76px);
+  height: fit-content;
 }
