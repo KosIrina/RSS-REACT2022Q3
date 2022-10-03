@@ -1,6 +1,6 @@
 export type SearchBarProps = Record<string, never>;
 
-export interface SearchBarState {
+export interface ISearchBarState {
   inputValue: string;
 }
 
@@ -27,10 +27,10 @@ export interface IDataElement {
 
 export type IData = IDataElement[];
 
-export interface CardItemProps {
+export interface ICardItemProps {
   character: IDataElement;
 }
 
-export interface CardListProps {
+export interface ICardListProps {
   characters: IData;
 }
