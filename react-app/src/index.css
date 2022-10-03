@@ -8,6 +8,14 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: 'HitchHike';
+  src: url('./assets/fonts/HitchHike.woff2') format('woff2'),
+    url('./assets/fonts/HitchHike.woff') format('woff'),
+    url('./assets/fonts/HitchHike.ttf') format('ttf');
+  font-weight: 400;
+}
+
 * {
   box-sizing: border-box;
 }
