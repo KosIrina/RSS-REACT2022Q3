@@ -1,0 +1,18 @@
+@media (max-width: 768px) {
+  .App > .main-wrapper {
+    min-height: calc(100vh - 155px);
+  }
+}
+
+@media (max-width: 475px) {
+  .App > .main-wrapper {
+    min-height: calc(100vh - 199px);
+  }
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 106px);
+}
