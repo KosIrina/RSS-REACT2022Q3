@@ -1,10 +1,10 @@
 import React from 'react';
-import { CardItemProps } from 'types';
+import { ICardItemProps } from 'types';
 import './CardItem.css';
 
-const CardItem = (props: CardItemProps): JSX.Element => {
+const CardItem = (props: ICardItemProps): JSX.Element => {
   return (
-    <li className="main-page__card-item character-card">
+    <li className="main-page__card-item character-card" data-testid="main-page-character-card">
       <img className="character-card__image" src={props.character.image} alt="Character image" />
       <p className="character-card__name">
         <i>
