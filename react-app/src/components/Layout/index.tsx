@@ -14,6 +14,9 @@ const Layout = (): JSX.Element => {
           <NavLink className="navigation__link" to="/about">
             About Us
           </NavLink>
+          <NavLink className="navigation__link" to="/form">
+            Form
+          </NavLink>
         </nav>
       </header>
 
