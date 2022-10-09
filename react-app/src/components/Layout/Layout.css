@@ -27,6 +27,10 @@
     top: -3px;
   }
 
+  .header > .header__navigation {
+    column-gap: 5px;
+  }
+
   .App > .main {
     min-height: calc(100vh - 169px);
     height: fit-content;
@@ -75,6 +79,7 @@
 
 .navigation__link {
   position: relative;
+  width: max-content;
   padding: 0 8px;
   font-weight: 600;
 }
