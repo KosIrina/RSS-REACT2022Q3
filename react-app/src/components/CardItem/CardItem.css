@@ -9,6 +9,7 @@
   width: 250px;
   height: 250px;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .main-page__card-item > p {
