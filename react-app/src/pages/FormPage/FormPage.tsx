@@ -1,10 +1,10 @@
 import React from 'react';
 import Form from '../../components/Form';
 import CardList from '../../components/CardList';
-import { ICustomDataElement, IFormPageState, SearchBarProps } from '../../types';
+import { ICustomDataElement, IFormPageState, EmptyObject } from '../../types';
 
-class FormPage extends React.Component<SearchBarProps, IFormPageState> {
-  constructor(props: SearchBarProps) {
+class FormPage extends React.Component<EmptyObject, IFormPageState> {
+  constructor(props: EmptyObject) {
     super(props);
     this.state = {
       cards: [],

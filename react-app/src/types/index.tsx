@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-export type SearchBarProps = Record<string, never>;
+export type EmptyObject = Record<string, never>;
 
 export interface ISearchBarState {
   inputValue: string;

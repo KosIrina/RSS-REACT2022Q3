@@ -1,10 +1,10 @@
 import React, { ChangeEvent, KeyboardEvent } from 'react';
 import './SearchBar.css';
-import { SearchBarProps, ISearchBarState } from '../../types';
+import { EmptyObject, ISearchBarState } from '../../types';
 import { ENTER_KEY_CODES, EMPTY_STRING, LOCAL_STORAGE_KEYS } from '../../constants';
 
-class SearchBar extends React.Component<SearchBarProps, ISearchBarState> {
-  constructor(props: SearchBarProps) {
+class SearchBar extends React.Component<EmptyObject, ISearchBarState> {
+  constructor(props: EmptyObject) {
     super(props);
     this.state = {
       inputValue: localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue) || EMPTY_STRING,
