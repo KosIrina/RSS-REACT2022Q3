@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Alex",
+    "status": "Alive",
+    "species": "Human",
+    "gender": "Male",
+    "birthDate": "2007-10-05",
+    "avatar": ""
+  },
+  {
+    "id": 2,
+    "name": "Mona",
+    "status": "Dead",
+    "species": "Alien",
+    "gender": "Female",
+    "birthDate": "1900-04-27",
+    "avatar": ""
+  }
+]
