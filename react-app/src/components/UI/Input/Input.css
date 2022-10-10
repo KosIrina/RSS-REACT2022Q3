@@ -1,0 +1,90 @@
+.status-container__label,
+.gender-container__label {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 23px;
+  margin: 0 55px 0 50px;
+  cursor: pointer;
+}
+
+.status-container__label {
+  margin: 0 55px 0 50px;
+}
+
+.gender-container__label {
+  margin: 0 70px 0 50px;
+
+}
+
+.status-container__label::before,
+.gender-container__label::before {
+  position: absolute;
+  left: -50px;
+  top: 3px;
+}
+
+.status-container__label::before {
+  content: 'Alive';
+}
+
+.gender-container__label::before {
+  content: 'Male';
+}
+
+.status-container__label::after,
+.gender-container__label::after {
+  position: absolute;
+  top: 3px;
+}
+
+.status-container__label::after {
+  content: 'Dead';
+  right: -54px;
+}
+
+.gender-container__label::after {
+  content: 'Female';
+  right: -70px;
+}
+
+.swithcer-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 30px;
+  background-color: #a5a5a5;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.swithcer-circle::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 2.8px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: .4s;
+}
+
+.status-container__input:checked + .swithcer-circle,
+.gender-container__input:checked + .swithcer-circle {
+  background-color: #2196f3;
+}
+
+.status-container__input:checked + .swithcer-circle::before,
+.gender-container__input:checked + .swithcer-circle::before {
+  transform: translateX(24px);
+}
+
+.status-container__input,
+.gender-container__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
