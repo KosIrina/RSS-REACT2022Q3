@@ -14,7 +14,6 @@
 
 .gender-container__label {
   margin: 0 70px 0 50px;
-
 }
 
 .status-container__label::before,
@@ -56,20 +55,20 @@
   bottom: 0;
   border-radius: 30px;
   background-color: #a5a5a5;
-  transition: .4s;
+  transition: 0.4s;
   cursor: pointer;
 }
 
 .swithcer-circle::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 18px;
   width: 18px;
   left: 3px;
   bottom: 2.8px;
   border-radius: 50%;
   background-color: #fff;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .status-container__input:checked + .swithcer-circle,
