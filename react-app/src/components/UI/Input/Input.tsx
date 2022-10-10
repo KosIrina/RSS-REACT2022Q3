@@ -19,6 +19,7 @@ class Input extends React.Component<IInputProps> {
             accept={this.props.accept}
             ref={this.props.reference}
             onChange={this.props.onChange}
+            data-testid={this.props.testid}
           />
           {this.props.switcher && <span className="swithcer-circle" />}
         </label>

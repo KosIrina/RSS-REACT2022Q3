@@ -233,7 +233,11 @@ class Form extends React.Component<IFormProps, IFormState> {
   render(): JSX.Element {
     return (
       <>
-        <form className="main-page__submit-form submit-form" onSubmit={this.handleSubmit}>
+        <form
+          className="main-page__submit-form submit-form"
+          onSubmit={this.handleSubmit}
+          data-testid="submit-form"
+        >
           <Input
             classes={{
               container: 'submit-form__item name-container',
@@ -262,6 +266,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             switcher={true}
             reference={this.statusInput}
             onChange={this.handleChange}
+            testid="status-input"
           />
 
           <Select
@@ -294,6 +299,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             switcher={true}
             reference={this.genderInput}
             onChange={this.handleChange}
+            testid="gender-input"
           />
 
           <Input
@@ -327,6 +333,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             reference={this.imageInput}
             isValid={this.state.avatar}
             onChange={this.handleChange}
+            testid="file-input"
           />
 
           <Input
@@ -343,6 +350,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             reference={this.agreeInput}
             isValid={this.state.agreement}
             onChange={this.handleChange}
+            testid="agree-input"
           />
 
           <Button
