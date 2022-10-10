@@ -17,6 +17,13 @@ describe('React Router', (): void => {
     expect(screen.getByText(/welcome to rick and morty characters/i)).toBeInTheDocument();
   });
 
+  it('Should render form page', async (): Promise<void> => {
+    render(<App />, { wrapper: BrowserRouter });
+    const user = userEvent.setup();
+    await user.click(screen.getByText('Form'));
+    expect(screen.getByText(/here you can create your own character/i)).toBeInTheDocument();
+  });
+
   it('Should land 404 on a bad page', (): void => {
     const badRoute = '/some/bad/route';
     render(
