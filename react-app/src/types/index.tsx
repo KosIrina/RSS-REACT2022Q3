@@ -61,6 +61,7 @@ export interface IInputProps {
   switcher?: boolean;
   isValid?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  testid?: string;
 }
 
 export interface ISelectProps {
