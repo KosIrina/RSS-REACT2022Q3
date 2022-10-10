@@ -6,7 +6,7 @@ import CharactersInfo from '../../data/universe-characters.json';
 describe('CardList', (): void => {
   it('Should render cards list', (): void => {
     render(<CardList characters={CharactersInfo} />);
-    expect(screen.getByTestId('main-page-characters-list')).toBeInTheDocument();
+    expect(screen.getByTestId('main-characters-list')).toBeInTheDocument();
   });
 
   it('Should contain the appropriate amount of cards', (): void => {

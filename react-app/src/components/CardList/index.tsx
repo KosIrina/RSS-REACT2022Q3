@@ -6,7 +6,7 @@ import CardItem from '../CardItem';
 const CardList = (props: ICardListProps): JSX.Element => {
   const characters = props.characters;
   return (
-    <ul className="main-page__cards-list" data-testid="main-page-characters-list">
+    <ul className="main__cards-list" data-testid="main-characters-list">
       {characters.map(
         (character: IDataElement | ICustomDataElement): JSX.Element => (
           <CardItem

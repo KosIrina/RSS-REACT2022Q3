@@ -1,4 +1,4 @@
-.main-page__cards-list {
+.main__cards-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
