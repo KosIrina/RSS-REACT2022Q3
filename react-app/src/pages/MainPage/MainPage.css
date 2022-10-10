@@ -13,6 +13,12 @@
 .main-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  row-gap: 10px;
   min-height: calc(100vh - 106px);
+}
+
+.main__title {
+  margin: 8px;
+  font-size: 22px;
+  text-align: center;
 }
