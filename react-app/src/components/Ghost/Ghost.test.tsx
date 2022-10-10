@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Ghost from '.';
-import { Numbers } from '../../constants';
+import { Numbers } from '../../types';
 
 describe('Ghost', (): void => {
   it('Should render ghost legs', (): void => {

@@ -123,3 +123,9 @@ export interface IFormState {
   agreement: boolean;
   showMessage: boolean;
 }
+
+export enum Numbers {
+  Zero = 0,
+  One,
+  Four = 4,
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CharactersInfo from '../../data/universe-characters.json';
-import { Numbers } from '../../constants';
+import { Numbers } from '../../types';
 import CardItem from '.';
 
 describe('CardItem', (): void => {

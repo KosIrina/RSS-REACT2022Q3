@@ -3,14 +3,13 @@ import './Form.css';
 import Input from '../../components/UI/Input';
 import Button from '../../components/UI/Button';
 import Select from '../../components/UI/Select';
-import { IFormProps, IFormState } from '../../types';
+import { IFormProps, Numbers, IFormState } from '../../types';
 import {
   CHARACTER_GENDER,
   CHARACTER_STATUS,
   EMPTY_STRING,
   FORM_SELECT_OPTIONS,
   FORM_SELECT_VALUES,
-  Numbers,
   ONE_SECOND,
 } from '../../constants';
 

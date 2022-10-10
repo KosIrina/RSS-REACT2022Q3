@@ -9,12 +9,6 @@ export const ENTER_KEY_CODES = {
   enterNumpad: 'NumpadEnter',
 };
 
-export enum Numbers {
-  Zero = 0,
-  One,
-  Four = 4,
-}
-
 export const CHARACTER_STATUS = {
   dead: 'Dead',
   alive: 'Alive',
