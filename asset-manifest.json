@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/css/main.5c76c8b5.css",
-    "main.js": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/js/main.46223563.js",
-    "static/media/logo.png": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/logo.871e166efc578858ff13.png",
-    "static/media/JosefinSans-Regular.ttf": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/JosefinSans-Regular.0e82e3d2c82cf1e38a33.ttf",
-    "static/media/JosefinSans-Regular.woff": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/JosefinSans-Regular.af4e134a3d252c2c7aa5.woff",
-    "static/media/JosefinSans-Regular.woff2": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/JosefinSans-Regular.523d20efc041487b4205.woff2",
-    "static/media/HitchHike.ttf": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/HitchHike.b94dbf1531e505420d4d.ttf",
-    "static/media/HitchHike.woff": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/HitchHike.4ddf2565f03901eba6d1.woff",
-    "static/media/HitchHike.woff2": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/HitchHike.7d152ab39dc413ae40b2.woff2",
-    "static/media/magnifier.svg": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/magnifier.1265fa50e6330c05b24d.svg",
-    "static/media/cross.svg": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/media/cross.e7ec03580e1496053d1d.svg",
-    "index.html": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/index.html",
-    "main.5c76c8b5.css.map": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/css/main.5c76c8b5.css.map",
-    "main.46223563.js.map": "/rolling-scopes-school/kosirina-REACT2022Q3/react-app/static/js/main.46223563.js.map"
+    "main.css": "/kosirina-REACT2022Q3/static/css/main.c40c5ee2.css",
+    "main.js": "/kosirina-REACT2022Q3/static/js/main.5d1a6538.js",
+    "static/media/logo.png": "/kosirina-REACT2022Q3/static/media/logo.871e166efc578858ff13.png",
+    "static/media/JosefinSans-Regular.ttf": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.0e82e3d2c82cf1e38a33.ttf",
+    "static/media/JosefinSans-Regular.woff": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.af4e134a3d252c2c7aa5.woff",
+    "static/media/JosefinSans-Regular.woff2": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.523d20efc041487b4205.woff2",
+    "static/media/HitchHike.ttf": "/kosirina-REACT2022Q3/static/media/HitchHike.b94dbf1531e505420d4d.ttf",
+    "static/media/HitchHike.woff": "/kosirina-REACT2022Q3/static/media/HitchHike.4ddf2565f03901eba6d1.woff",
+    "static/media/HitchHike.woff2": "/kosirina-REACT2022Q3/static/media/HitchHike.7d152ab39dc413ae40b2.woff2",
+    "static/media/magnifier.svg": "/kosirina-REACT2022Q3/static/media/magnifier.1265fa50e6330c05b24d.svg",
+    "static/media/cross.svg": "/kosirina-REACT2022Q3/static/media/cross.e7ec03580e1496053d1d.svg",
+    "index.html": "/kosirina-REACT2022Q3/index.html",
+    "main.c40c5ee2.css.map": "/kosirina-REACT2022Q3/static/css/main.c40c5ee2.css.map",
+    "main.5d1a6538.js.map": "/kosirina-REACT2022Q3/static/js/main.5d1a6538.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c76c8b5.css",
-    "static/js/main.46223563.js"
+    "static/css/main.c40c5ee2.css",
+    "static/js/main.5d1a6538.js"
   ]
 }
