@@ -7,7 +7,7 @@ import './index.css';
 const root: ReactDOM.Root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/kosirina-REACT2022Q3">
       <App />
     </BrowserRouter>
   </React.StrictMode>
