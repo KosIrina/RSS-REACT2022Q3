@@ -13,42 +13,30 @@ const CardItem = (props: ICardItemProps): JSX.Element => {
         alt="Character image"
       />
       <p className="character-card__name">
-        <i>
-          <b>Name: </b>
-        </i>
+        <span className="character-card__item-name">Name: </span>
         {props.character.name}
       </p>
       <p className="character-card__status">
-        <i>
-          <b>Status: </b>
-        </i>
+        <span className="character-card__item-name">Status: </span>
         {props.character.status}
       </p>
       <p className="character-card__species">
-        <i>
-          <b>Species: </b>
-        </i>
+        <span className="character-card__item-name">Species: </span>
         {props.character.species}
       </p>
       <p className="character-card__gender">
-        <i>
-          <b>Gender: </b>
-        </i>
+        <span className="character-card__item-name">Gender: </span>
         {props.character.gender}
       </p>
       {((props.character as IDataElement).episode && (
         <p className="character-card__episodes">
-          <i>
-            <b>Amount of episodes: </b>
-          </i>
+          <span className="character-card__item-name">Amount of episodes: </span>
           {(props.character as IDataElement).episode.length}
         </p>
       )) ||
         ((props.character as ICustomDataElement) && (
           <p className="character-card__birthday">
-            <i>
-              <b>Birthday: </b>
-            </i>
+            <span className="character-card__item-name">Birthday: </span>
             {(props.character as ICustomDataElement).birthDate}
           </p>
         ))}

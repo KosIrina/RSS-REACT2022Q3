@@ -15,3 +15,8 @@
 .main-page__card-item > p {
   margin: 5px;
 }
+
+.character-card__item-name {
+  font-weight: 600;
+  font-style: italic;
+}
