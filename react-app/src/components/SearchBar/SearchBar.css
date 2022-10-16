@@ -30,7 +30,7 @@
 }
 
 .main-page__search-input::-webkit-search-cancel-button {
-  -webkit-appearance: none;
+  appearance: none;
   position: absolute;
   top: 11px;
   right: 10px;
