@@ -1,4 +1,4 @@
-.ghost,
+.ghost-body,
 .ghost-legs {
   width: 50%;
   height: 53%;
@@ -16,15 +16,15 @@
   z-index: 0;
 }
 
-.face {
+.ghost-face {
   position: absolute;
   width: 100%;
   height: 60%;
   top: 20%;
 }
 
-.eye-left,
-.eye-right {
+.ghost-face__eye-left,
+.ghost-face__eye-right {
   position: absolute;
   background: #353535;
   width: 13px;
@@ -33,15 +33,15 @@
   top: 40%;
 }
 
-.eye-left {
+.ghost-face__eye-left {
   left: 25%;
 }
 
-.eye-right {
+.ghost-face__eye-right {
   right: 25%;
 }
 
-.mouth {
+.ghost-face__mouth {
   position: absolute;
   top: 50%;
   left: 45%;
@@ -53,10 +53,10 @@
   transform: rotate(45deg);
 }
 
-.one,
-.two,
-.three,
-.four {
+.ghost-legs__one,
+.ghost-legs__two,
+.ghost-legs__three,
+.ghost-legs__four {
   position: absolute;
   background: #ededed;
   top: 85%;
@@ -66,23 +66,23 @@
   z-index: 0;
 }
 
-.one {
+.ghost-legs__one {
   border-radius: 0 0 100% 30%;
   left: -1px;
 }
 
-.two {
-  left: 23%;
+.ghost-legs__two {
+  left: 24%;
   border-radius: 0 0 50% 50%;
 }
 
-.three {
-  left: 50%;
+.ghost-legs__three {
+  left: 51%;
   border-radius: 0 0 50% 50%;
 }
 
-.four {
-  left: 75%;
+.ghost-legs__four {
+  left: 76%;
   border-radius: 0 0 30% 100%;
 }
 
