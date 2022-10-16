@@ -1,0 +1,50 @@
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+}
+
+@media (max-width: 475px) {
+  .App > .header {
+    font-size: 23px;
+  }
+
+  .header > .header__logo {
+    width: 170px;
+  }
+
+  .header > .header__logo::before {
+    top: -3px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 56px;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 25px;
+}
+
+.header__logo {
+  position: relative;
+  margin: 0;
+  margin-left: 50px;
+  font-family: HitchHike, sans-serif;
+  font-size: 40px;
+}
+
+.header__logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50px;
+  width: 45px;
+  height: 45px;
+  background-image: url('../../assets/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
