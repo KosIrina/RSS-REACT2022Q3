@@ -11,7 +11,7 @@ const AboutPage = (): JSX.Element => {
         Enjoy!
       </p>
       <p className="about-page__app-info">
-        Frontend Developer -{' '}
+        Frontend Developer -&nbsp;
         <a className="about-page__gihtub-link" href="https://github.com/KosIrina">
           Irina Kosyanchuk
         </a>
