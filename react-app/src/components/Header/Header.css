@@ -5,7 +5,7 @@
   }
 }
 
-@media (max-width: 475px) {
+@media (max-width: 485px) {
   .App > .header {
     font-size: 23px;
   }
