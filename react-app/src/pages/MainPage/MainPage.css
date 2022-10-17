@@ -22,3 +22,11 @@
   font-size: 22px;
   text-align: center;
 }
+
+.main__error-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate( -50%, -50%);
+}
