@@ -1,10 +1,10 @@
 import React, { ChangeEvent, KeyboardEvent } from 'react';
 import './SearchBar.css';
-import { EmptyObject, ISearchBarState } from '../../types';
+import { ISearchBarProps, ISearchBarState } from '../../types';
 import { ENTER_KEY_CODES, EMPTY_STRING, LOCAL_STORAGE_KEYS } from '../../constants';
 
-class SearchBar extends React.Component<EmptyObject, ISearchBarState> {
-  constructor(props: EmptyObject) {
+class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
+  constructor(props: ISearchBarProps) {
     super(props);
     this.state = {
       inputValue: localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue) || EMPTY_STRING,
@@ -15,9 +15,10 @@ class SearchBar extends React.Component<EmptyObject, ISearchBarState> {
     localStorage.setItem(LOCAL_STORAGE_KEYS.searchValue, this.state.inputValue);
   }
 
-  onFormSubmit(event: KeyboardEvent<HTMLInputElement>): void {
+  async onFormSubmit(event: KeyboardEvent<HTMLInputElement>): Promise<void> {
     if (event.code === ENTER_KEY_CODES.enter || event.code === ENTER_KEY_CODES.enterNumpad) {
       event.preventDefault();
+      await this.props.updateMainPageState(this.state.inputValue);
     }
   }
 
@@ -32,11 +33,13 @@ class SearchBar extends React.Component<EmptyObject, ISearchBarState> {
           <input
             type="search"
             className="main-page__search-input"
-            placeholder="Search character.."
+            placeholder="Search by name.."
             autoComplete="off"
             value={this.state.inputValue}
             onChange={(event: ChangeEvent<HTMLInputElement>): void => this.onSearchChange(event)}
-            onKeyDown={(event: KeyboardEvent<HTMLInputElement>): void => this.onFormSubmit(event)}
+            onKeyDown={async (event: KeyboardEvent<HTMLInputElement>): Promise<void> =>
+              this.onFormSubmit(event)
+            }
           />
         </form>
       </>
