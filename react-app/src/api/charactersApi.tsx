@@ -17,6 +17,10 @@ export default class CharactersAPI {
       throw new Error(API_ERROR_MESSAGES.charactersNotFound);
     }
     const data: IDataFromApi = await response.json();
-    return data.results;
+    let result = data.results;
+    if (data.info.next) {
+      result = [...result, ...(await this.getCharacters({ name, page: page + Numbers.One }))];
+    }
+    return result;
   }
 }

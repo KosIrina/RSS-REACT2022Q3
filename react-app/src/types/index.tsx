@@ -145,13 +145,13 @@ export interface IDataFromApi {
   info: {
     count: number | null;
     pages: number;
-    next: string;
+    next: string | null;
     prev: number | null;
   };
   results: Data;
 }
 
 export interface IRequestParameters {
-  name?: string;
-  page?: number;
+  name: string;
+  page: number;
 }
