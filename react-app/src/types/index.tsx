@@ -31,6 +31,7 @@ export type Data = IDataElement[];
 
 export interface ICardItemProps {
   character: IDataElement | ICustomDataElement;
+  onClick?: () => void;
 }
 
 export interface ICardListProps {
@@ -90,9 +91,10 @@ export interface IButtonProps {
   };
   type: 'button' | 'reset' | 'submit';
   buttonText: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   showMessage?: boolean;
   message?: string;
+  onClick?: () => void;
 }
 
 export interface ICustomDataElement {
@@ -155,3 +157,12 @@ export interface IRequestParameters {
   name: string;
   page: number;
 }
+
+export interface ICardListState {
+  isModalVisible: boolean;
+  chosenCharacterInfo?: IDataElement | ICustomDataElement;
+}
+
+export type PortalProps = {
+  children: React.ReactNode;
+};
