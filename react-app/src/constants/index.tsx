@@ -40,3 +40,8 @@ export const API_ERROR_MESSAGES = {
   charactersNotFound: "Such character doesn't exist",
   unknown: 'Unexpected error occured',
 };
+
+export const HTTP_STATUS_CODES = {
+  ok: 200,
+  notFound: 404,
+};
