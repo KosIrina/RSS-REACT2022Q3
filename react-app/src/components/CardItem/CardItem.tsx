@@ -4,7 +4,11 @@ import './CardItem.css';
 
 const CardItem = (props: ICardItemProps): JSX.Element => {
   return (
-    <li className="main-page__card-item character-card" data-testid="main-page-character-card">
+    <li
+      className="main-page__card-item character-card"
+      data-testid="main-page-character-card"
+      onClick={props.onClick}
+    >
       <img
         className="character-card__image"
         src={
