@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event';
 describe('React Router', (): void => {
   it('Should render main page', (): void => {
     render(<App />, { wrapper: BrowserRouter });
-    expect(screen.getByPlaceholderText(/search character../i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/search by name../i)).toBeInTheDocument();
   });
 
   it('Should navigate app', async (): Promise<void> => {
