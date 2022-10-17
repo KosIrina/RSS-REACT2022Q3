@@ -9,6 +9,66 @@
   animation: appear 1s;
 }
 
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(41, 41, 41, 0.6);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.modal-overlay:hover ~ .modal-window .modal-window__close-button {
+  border: 2px dotted rgba(0, 0, 0, 0.8);
+}
+
+.modal-window {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  border-radius: 9px;
+  transform: translate(-50%, -50%);
+}
+
+.modal-window__close-button-container {
+  width: fit-content;
+  margin: 0 0 0 auto;
+  padding-bottom: 5px;
+}
+
+.modal-window__close-button {
+  position: absolute;
+  top: -27px;
+  right: -30px;
+  width: 35px;
+  height: 35px;
+  border: 2px dotted transparent;
+  border-radius: 20px;
+  font-size: 30px;
+  line-height: 30px;
+  color: inherit;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.modal-window__close-button:hover {
+  border: 2px dotted rgba(0, 0, 0, 0.8);
+}
+
+
+.modal-window__character-card {
+  margin: 0;
+  padding: 0; 
+  list-style: none;
+}
+
+.modal-window__character-card > .character-card {
+  background-color: #fff;
+  cursor: auto;
+}
+
 @keyframes appear{
   0% {
     opacity:0;
