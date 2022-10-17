@@ -42,8 +42,12 @@ class CardList extends React.Component<ICardListProps, ICardListState> {
         </ul>
         {this.state.isModalVisible && this.state.chosenCharacterInfo && (
           <Modal>
-            <div className="modal-overlay" onClick={(): void => this.handleModal()} />
-            <div className="modal-window">
+            <div
+              className="modal-overlay"
+              data-testid="modal-overlay"
+              onClick={(): void => this.handleModal()}
+            />
+            <div className="modal-window" data-testid="modal-window">
               <Button
                 classes={{
                   container: 'modal-window__close-button-container',

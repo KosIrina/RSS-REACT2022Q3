@@ -2,22 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { PortalProps } from '../../../types';
 
-const modalRoot = document.getElementById('modal-root') as HTMLElement;
-
 class Modal extends React.Component<PortalProps> {
+  modalRoot: HTMLElement;
   modalWrapper: HTMLElement;
 
   constructor(props: PortalProps) {
     super(props);
+    this.modalRoot = document.getElementById('modal-root') as HTMLElement;
     this.modalWrapper = document.createElement('div');
   }
 
   componentDidMount(): void {
-    modalRoot.appendChild(this.modalWrapper);
+    this.modalRoot.appendChild(this.modalWrapper);
   }
 
   componentWillUnmount(): void {
-    modalRoot.removeChild(this.modalWrapper);
+    this.modalRoot.removeChild(this.modalWrapper);
   }
 
   render(): React.ReactElement<PortalProps> {
