@@ -10,7 +10,7 @@ const CardList = (props: ICardListProps): JSX.Element => {
       {characters.map(
         (character: IDataElement | ICustomDataElement): JSX.Element => (
           <CardItem
-            key={character.id.toString()}
+            key={character.id}
             character={(character as IDataElement) || (character as ICustomDataElement)}
           />
         )
