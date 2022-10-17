@@ -24,7 +24,7 @@ describe('CardItem', (): void => {
     render(
       <CardItem character={CharactersInfo[Numbers.Zero]} onClick={jest.fn()} showFullInfo={false} />
     );
-    expect(screen.getByText(/name:/i)).toBeInTheDocument();
+    expect(screen.getByTestId('character-card-name')).toBeInTheDocument();
   });
 
   it('Should render status', (): void => {
@@ -94,7 +94,7 @@ describe('Custom CardItem', (): void => {
         showFullInfo={false}
       />
     );
-    expect(screen.getByText(/name:/i)).toBeInTheDocument();
+    expect(screen.getByTestId('character-card-name')).toBeInTheDocument();
   });
 
   it('Should render status', (): void => {

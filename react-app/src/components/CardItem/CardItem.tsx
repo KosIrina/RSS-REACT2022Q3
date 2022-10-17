@@ -16,7 +16,9 @@ const CardItem = (props: ICardItemProps): JSX.Element => {
         }
         alt="Character image"
       />
-      <p className="character-card__name">{props.character.name}</p>
+      <p className="character-card__name" data-testid="character-card-name">
+        {props.character.name}
+      </p>
       {props.showFullInfo && (
         <>
           <p className="character-card__status">
