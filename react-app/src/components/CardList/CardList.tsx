@@ -35,6 +35,7 @@ class CardList extends React.Component<ICardListProps, ICardListState> {
                 onClick={(): void => {
                   this.handleModal(character);
                 }}
+                showFullInfo={false}
               />
             )
           )}
@@ -59,6 +60,7 @@ class CardList extends React.Component<ICardListProps, ICardListState> {
                     (this.state.chosenCharacterInfo as IDataElement) ||
                     (this.state.chosenCharacterInfo as ICustomDataElement)
                   }
+                  showFullInfo={true}
                 />
               </ul>
             </div>

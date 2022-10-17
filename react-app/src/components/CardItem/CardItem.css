@@ -21,3 +21,8 @@
   font-weight: 600;
   font-style: italic;
 }
+
+.character-card__name {
+  font-weight: 600;
+  text-align: center;
+}

@@ -16,34 +16,35 @@ const CardItem = (props: ICardItemProps): JSX.Element => {
         }
         alt="Character image"
       />
-      <p className="character-card__name">
-        <span className="character-card__item-name">Name: </span>
-        {props.character.name}
-      </p>
-      <p className="character-card__status">
-        <span className="character-card__item-name">Status: </span>
-        {props.character.status}
-      </p>
-      <p className="character-card__species">
-        <span className="character-card__item-name">Species: </span>
-        {props.character.species}
-      </p>
-      <p className="character-card__gender">
-        <span className="character-card__item-name">Gender: </span>
-        {props.character.gender}
-      </p>
-      {((props.character as IDataElement).episode && (
-        <p className="character-card__episodes">
-          <span className="character-card__item-name">Amount of episodes: </span>
-          {(props.character as IDataElement).episode.length}
-        </p>
-      )) ||
-        ((props.character as ICustomDataElement) && (
-          <p className="character-card__birthday">
-            <span className="character-card__item-name">Birthday: </span>
-            {(props.character as ICustomDataElement).birthDate}
+      <p className="character-card__name">{props.character.name}</p>
+      {props.showFullInfo && (
+        <>
+          <p className="character-card__status">
+            <span className="character-card__item-name">Status: </span>
+            {props.character.status}
           </p>
-        ))}
+          <p className="character-card__species">
+            <span className="character-card__item-name">Species: </span>
+            {props.character.species}
+          </p>
+          <p className="character-card__gender">
+            <span className="character-card__item-name">Gender: </span>
+            {props.character.gender}
+          </p>
+          {((props.character as IDataElement).episode && (
+            <p className="character-card__episodes">
+              <span className="character-card__item-name">Amount of episodes: </span>
+              {(props.character as IDataElement).episode.length}
+            </p>
+          )) ||
+            ((props.character as ICustomDataElement) && (
+              <p className="character-card__birthday">
+                <span className="character-card__item-name">Birthday: </span>
+                {(props.character as ICustomDataElement).birthDate}
+              </p>
+            ))}
+        </>
+      )}
     </li>
   );
 };

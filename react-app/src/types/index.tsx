@@ -32,6 +32,7 @@ export type Data = IDataElement[];
 export interface ICardItemProps {
   character: IDataElement | ICustomDataElement;
   onClick?: () => void;
+  showFullInfo: boolean;
 }
 
 export interface ICardListProps {
