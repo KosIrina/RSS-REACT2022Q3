@@ -130,3 +130,28 @@ export enum Numbers {
   One,
   Four = 4,
 }
+
+export interface IMainPageState {
+  cards: Data;
+  isLoading: boolean;
+  errorMessage: string | null;
+}
+
+export interface ISearchBarProps {
+  updateMainPageState: (serachParameter?: string) => Promise<void>;
+}
+
+export interface IDataFromApi {
+  info: {
+    count: number | null;
+    pages: number;
+    next: string;
+    prev: number | null;
+  };
+  results: Data;
+}
+
+export interface IRequestParameters {
+  name?: string;
+  page?: number;
+}
