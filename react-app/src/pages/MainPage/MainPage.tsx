@@ -4,7 +4,7 @@ import SearchBar from '../../components/SearchBar';
 import CardList from '../../components/CardList';
 import Loader from '../../components/Loader';
 import CharactersAPI from '../../api/charactersApi';
-import { API_ERROR_MESSAGES, ONE_SECOND } from '../../constants';
+import { API_ERROR_MESSAGES } from '../../constants';
 import { EmptyObject, IMainPageState, Numbers } from '../../types';
 
 class MainPage extends React.Component<EmptyObject, IMainPageState> {
@@ -26,7 +26,6 @@ class MainPage extends React.Component<EmptyObject, IMainPageState> {
   }
 
   async updateMainPageState(searchParameter?: string): Promise<void> {
-    // setTimeout below in this method is added to be able to see loader in case response comes quickly
     if (searchParameter !== undefined) {
       this.setState(() => ({
         isLoading: true,
@@ -40,25 +39,21 @@ class MainPage extends React.Component<EmptyObject, IMainPageState> {
             page: Numbers.One,
           })
         : await this.charactersApi.getCharacters();
-      setTimeout((): void => {
-        this.setState(
-          (): IMainPageState => ({
-            cards: charactersData,
-            isLoading: false,
-            errorMessage: null,
-          })
-        );
-      }, ONE_SECOND);
+      this.setState(
+        (): IMainPageState => ({
+          cards: charactersData,
+          isLoading: false,
+          errorMessage: null,
+        })
+      );
     } catch (error) {
-      setTimeout((): void => {
-        this.setState(
-          (): IMainPageState => ({
-            cards: [],
-            isLoading: false,
-            errorMessage: error instanceof Error ? error.message : API_ERROR_MESSAGES.unknown,
-          })
-        );
-      }, ONE_SECOND);
+      this.setState(
+        (): IMainPageState => ({
+          cards: [],
+          isLoading: false,
+          errorMessage: error instanceof Error ? error.message : API_ERROR_MESSAGES.unknown,
+        })
+      );
     }
   }
 
