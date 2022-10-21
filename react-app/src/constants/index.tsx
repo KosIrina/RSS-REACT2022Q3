@@ -45,3 +45,5 @@ export const HTTP_STATUS_CODES = {
   ok: 200,
   notFound: 404,
 };
+
+export const FAKE_CARDS_LENGTH = 10;

@@ -131,6 +131,7 @@ export interface IFormState {
 export enum Numbers {
   Zero = 0,
   One,
+  Two,
   Four = 4,
 }
 
