@@ -61,7 +61,9 @@ class MainPage extends React.Component<EmptyObject, IMainPageState> {
         {<SearchBar updateMainPageState={this.updateMainPageState} />}
         {this.state.isLoading && <Loader />}
         {this.state.errorMessage && (
-          <div className="main__error-message">{this.state.errorMessage}</div>
+          <div className="main__error-message" data-testid="cards-error-message">
+            {this.state.errorMessage}
+          </div>
         )}
         {!!this.state.cards.length && !this.state.isLoading && !this.state.errorMessage && (
           <CardList characters={this.state.cards} />
