@@ -14,7 +14,7 @@ class MainPage extends React.Component<EmptyObject, IMainPageState> {
     super(props);
     this.state = {
       cards: [],
-      isLoading: true,
+      isLoading: false,
       errorMessage: null,
     };
     this.charactersApi = new CharactersAPI();
@@ -26,12 +26,10 @@ class MainPage extends React.Component<EmptyObject, IMainPageState> {
   }
 
   async updateMainPageState(searchParameter?: string): Promise<void> {
-    if (searchParameter !== undefined) {
-      this.setState(() => ({
-        isLoading: true,
-        errorMessage: null,
-      }));
-    }
+    this.setState(() => ({
+      isLoading: true,
+      errorMessage: null,
+    }));
     try {
       const charactersData = searchParameter
         ? await this.charactersApi.getCharacters({
