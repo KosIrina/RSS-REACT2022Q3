@@ -160,11 +160,6 @@ export interface IRequestParameters {
   page: number;
 }
 
-export interface ICardListState {
-  isModalVisible: boolean;
-  chosenCharacterInfo?: IDataElement | ICustomDataElement;
-}
-
 export type PortalProps = {
   children: React.ReactNode;
 };
