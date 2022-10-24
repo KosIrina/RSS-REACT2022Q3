@@ -1,7 +1,3 @@
-import React, { ChangeEvent } from 'react';
-
-export type EmptyObject = Record<string, never>;
-
 export interface IDataElement {
   id: number;
   name: string;
@@ -43,41 +39,14 @@ export interface ILocalStorage {
   getAll(): Record<string, string>;
 }
 
-export interface IInputProps {
-  classes: {
-    container: string;
-    label: string;
-    input: string;
-    error?: string;
-  };
-  id: string;
-  reference: React.RefObject<HTMLInputElement>;
-  type: string;
-  label?: string;
-  errorMessage?: string;
-  accept?: string;
-  switcher?: boolean;
-  isValid?: boolean;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  testid?: string;
-}
-
-export interface ISelectProps {
-  classes: {
-    container: string;
-    label: string;
-    select: string;
-    option: string;
-    error?: string;
-  };
-  id: string;
-  reference: React.RefObject<HTMLSelectElement>;
-  values: string[];
-  options: string[];
-  label?: string;
-  errorMessage?: string;
-  isValid: boolean;
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+export interface IFormValues {
+  name: string;
+  status: boolean;
+  species: string;
+  gender: boolean;
+  birthday: string;
+  avatar: FileList;
+  agreement: boolean;
 }
 
 export interface IButtonProps {
@@ -108,16 +77,6 @@ export type CustomData = ICustomDataElement[];
 
 export interface IFormProps {
   addNewCard: (card: ICustomDataElement) => void;
-}
-
-export interface IFormState {
-  buttonIsDisabled: boolean;
-  name: boolean;
-  species: boolean;
-  birthday: boolean;
-  avatar: boolean;
-  agreement: boolean;
-  showMessage: boolean;
 }
 
 export enum Numbers {
