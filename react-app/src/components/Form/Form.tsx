@@ -142,7 +142,7 @@ class Form extends React.Component<IFormProps, IFormState> {
       this.agreeInput.current
     ) {
       this.props.addNewCard({
-        id: Date.now(),
+        id: self.crypto.randomUUID(),
         name: this.nameInput.current.value,
         status: this.statusInput.current.checked ? CHARACTER_STATUS.dead : CHARACTER_STATUS.alive,
         species: `${this.speciesSelect.current.value[

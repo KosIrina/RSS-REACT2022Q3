@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { ILocalStorage } from 'types';
 import server from './mocks/server';
+import { Crypto } from '@peculiar/webcrypto';
+
+global.crypto = new Crypto();
 
 const localStorageMock = (function (): ILocalStorage {
   let store: Record<string, string> = {};

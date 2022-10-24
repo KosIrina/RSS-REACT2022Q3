@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "name": "Alex",
     "status": "Alive",
     "species": "Human",
@@ -9,7 +9,7 @@
     "avatar": ""
   },
   {
-    "id": 2,
+    "id": "2",
     "name": "Mona",
     "status": "Dead",
     "species": "Alien",
