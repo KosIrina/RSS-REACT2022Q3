@@ -23,11 +23,12 @@ describe('SearchBar', (): void => {
   });
 
   it('Should add value to local storage on unmount', async (): Promise<void> => {
+    localStorage.clear();
     render(<SearchBar updateMainPageState={jest.fn()} />);
     const user = userEvent.setup();
-    await user.type(screen.getByPlaceholderText(/search by name../i), 'test value');
+    await user.type(screen.getByPlaceholderText(/search by name../i), 'new test value');
     const { unmount } = render(<SearchBar updateMainPageState={jest.fn()} />);
     unmount();
-    expect(localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue)).toEqual('test value');
+    expect(localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue)).toEqual('new test value');
   });
 });

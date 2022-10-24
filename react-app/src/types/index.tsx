@@ -2,10 +2,6 @@ import React, { ChangeEvent } from 'react';
 
 export type EmptyObject = Record<string, never>;
 
-export interface ISearchBarState {
-  inputValue: string;
-}
-
 export interface IDataElement {
   id: number;
   name: string;
