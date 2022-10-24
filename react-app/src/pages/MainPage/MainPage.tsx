@@ -1,76 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './MainPage.css';
 import SearchBar from '../../components/SearchBar';
 import CardList from '../../components/CardList';
 import Loader from '../../components/Loader';
 import CharactersAPI from '../../api/charactersApi';
 import { API_ERROR_MESSAGES } from '../../constants';
-import { EmptyObject, IMainPageState, Numbers } from '../../types';
+import { Data, Numbers } from '../../types';
 
-class MainPage extends React.Component<EmptyObject, IMainPageState> {
-  charactersApi: CharactersAPI;
+const MainPage = (): JSX.Element => {
+  const [cards, setCards] = useState<Data>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  constructor(props: EmptyObject) {
-    super(props);
-    this.state = {
-      cards: [],
-      isLoading: false,
-      errorMessage: null,
-    };
-    this.charactersApi = new CharactersAPI();
-    this.updateMainPageState = this.updateMainPageState.bind(this);
-  }
-
-  async componentDidMount(): Promise<void> {
-    await this.updateMainPageState();
-  }
-
-  async updateMainPageState(searchParameter?: string): Promise<void> {
-    this.setState(() => ({
-      isLoading: true,
-      errorMessage: null,
-    }));
+  const updateMainPageState = useCallback(async (searchParameter?: string): Promise<void> => {
+    setIsLoading(true);
+    setErrorMessage(null);
     try {
       const charactersData = searchParameter
-        ? await this.charactersApi.getCharacters({
+        ? await new CharactersAPI().getCharacters({
             name: searchParameter,
             page: Numbers.One,
           })
-        : await this.charactersApi.getCharacters();
-      this.setState(
-        (): IMainPageState => ({
-          cards: charactersData,
-          isLoading: false,
-          errorMessage: null,
-        })
-      );
+        : await new CharactersAPI().getCharacters();
+      setCards(charactersData);
+      setIsLoading(false);
+      setErrorMessage(null);
     } catch (error) {
-      this.setState(
-        (): IMainPageState => ({
-          cards: [],
-          isLoading: false,
-          errorMessage: error instanceof Error ? error.message : API_ERROR_MESSAGES.unknown,
-        })
-      );
+      setCards([]);
+      setIsLoading(false);
+      setErrorMessage(error instanceof Error ? error.message : API_ERROR_MESSAGES.unknown);
     }
-  }
+  }, []);
 
-  render(): JSX.Element {
-    return (
-      <div className="main-wrapper">
-        {<SearchBar updateMainPageState={this.updateMainPageState} />}
-        {this.state.isLoading && <Loader />}
-        {this.state.errorMessage && (
-          <div className="main__error-message" data-testid="cards-error-message">
-            {this.state.errorMessage}
-          </div>
-        )}
-        {!!this.state.cards.length && !this.state.isLoading && !this.state.errorMessage && (
-          <CardList characters={this.state.cards} />
-        )}
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    updateMainPageState();
+  }, [updateMainPageState]);
+
+  return (
+    <div className="main-wrapper">
+      {<SearchBar updateMainPageState={updateMainPageState} />}
+      {isLoading && <Loader />}
+      {errorMessage && (
+        <div className="main__error-message" data-testid="cards-error-message">
+          {errorMessage}
+        </div>
+      )}
+      {!!cards.length && !isLoading && !errorMessage && <CardList characters={cards} />}
+    </div>
+  );
+};
 
 export default MainPage;

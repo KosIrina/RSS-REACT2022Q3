@@ -131,12 +131,6 @@ export enum Numbers {
   Four = 4,
 }
 
-export interface IMainPageState {
-  cards: Data;
-  isLoading: boolean;
-  errorMessage: string | null;
-}
-
 export interface ISearchBarProps {
   updateMainPageState: (serachParameter?: string) => Promise<void>;
 }
