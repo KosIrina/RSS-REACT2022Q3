@@ -1,37 +1,31 @@
 import React from 'react';
 import { ISelectProps } from 'types';
 
-class Select extends React.Component<ISelectProps> {
-  constructor(props: ISelectProps) {
-    super(props);
-  }
-
-  render(): JSX.Element {
-    return (
-      <div className={this.props.classes.container}>
-        <label htmlFor={this.props.id} className={this.props.classes.label}>
-          {this.props.label}
-        </label>
-        <select
-          id={this.props.id}
-          className={this.props.classes.select}
-          ref={this.props.reference}
-          onChange={this.props.onChange}
-        >
-          {this.props.values.map((value: string, index: number): JSX.Element => {
-            return (
-              <option key={value} value={value} className={this.props.classes.option}>
-                {this.props.options[index]}
-              </option>
-            );
-          })}
-        </select>
-        {!this.props.isValid && this.props.errorMessage && (
-          <span className={this.props.classes.error}>{this.props.errorMessage}</span>
-        )}
-      </div>
-    );
-  }
-}
+const Select = (props: ISelectProps): JSX.Element => {
+  return (
+    <div className={props.classes.container}>
+      <label htmlFor={props.id} className={props.classes.label}>
+        {props.label}
+      </label>
+      <select
+        id={props.id}
+        className={props.classes.select}
+        ref={props.reference}
+        onChange={props.onChange}
+      >
+        {props.values.map((value: string, index: number): JSX.Element => {
+          return (
+            <option key={value} value={value} className={props.classes.option}>
+              {props.options[index]}
+            </option>
+          );
+        })}
+      </select>
+      {!props.isValid && props.errorMessage && (
+        <span className={props.classes.error}>{props.errorMessage}</span>
+      )}
+    </div>
+  );
+};
 
 export default Select;

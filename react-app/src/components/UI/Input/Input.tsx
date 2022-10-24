@@ -2,33 +2,27 @@ import React from 'react';
 import { IInputProps } from 'types';
 import './Input.css';
 
-class Input extends React.Component<IInputProps> {
-  constructor(props: IInputProps) {
-    super(props);
-  }
-
-  render(): JSX.Element {
-    return (
-      <div className={this.props.classes.container}>
-        <label htmlFor={this.props.id} className={this.props.classes.label}>
-          {this.props.label}
-          <input
-            type={this.props.type}
-            id={this.props.id}
-            className={this.props.classes.input}
-            accept={this.props.accept}
-            ref={this.props.reference}
-            onChange={this.props.onChange}
-            data-testid={this.props.testid}
-          />
-          {this.props.switcher && <span className="swithcer-circle" />}
-        </label>
-        {!this.props.isValid && this.props.errorMessage && (
-          <span className={this.props.classes.error}>{this.props.errorMessage}</span>
-        )}
-      </div>
-    );
-  }
-}
+const Input = (props: IInputProps): JSX.Element => {
+  return (
+    <div className={props.classes.container}>
+      <label htmlFor={props.id} className={props.classes.label}>
+        {props.label}
+        <input
+          type={props.type}
+          id={props.id}
+          className={props.classes.input}
+          accept={props.accept}
+          ref={props.reference}
+          onChange={props.onChange}
+          data-testid={props.testid}
+        />
+        {props.switcher && <span className="swithcer-circle" />}
+      </label>
+      {!props.isValid && props.errorMessage && (
+        <span className={props.classes.error}>{props.errorMessage}</span>
+      )}
+    </div>
+  );
+};
 
 export default Input;
