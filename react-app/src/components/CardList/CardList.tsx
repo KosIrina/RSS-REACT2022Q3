@@ -6,7 +6,7 @@ import Modal from '../UI/Modal';
 import Button from '../UI/Button';
 
 const CardList = (props: ICardListProps): JSX.Element => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [chosenCharacterInfo, setChosenCharacterInfo] = useState<
     IDataElement | ICustomDataElement | null
   >(null);
