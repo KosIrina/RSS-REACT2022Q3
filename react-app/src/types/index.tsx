@@ -106,10 +106,6 @@ export interface ICustomDataElement {
 
 export type CustomData = ICustomDataElement[];
 
-export interface IFormPageState {
-  cards: CustomData;
-}
-
 export interface IFormProps {
   addNewCard: (card: ICustomDataElement) => void;
 }
