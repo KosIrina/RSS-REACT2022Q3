@@ -1,28 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { PortalProps } from '../../../types';
+import { PortalProps, VoidFunction } from '../../../types';
 
-class Modal extends React.Component<PortalProps> {
-  modalRoot: HTMLElement;
-  modalWrapper: HTMLElement;
+const Modal = (props: PortalProps): React.ReactElement<PortalProps> => {
+  const modalRoot = document.getElementById('modal-root') as HTMLElement;
+  const modalWrapper = document.createElement('div');
 
-  constructor(props: PortalProps) {
-    super(props);
-    this.modalRoot = document.getElementById('modal-root') as HTMLElement;
-    this.modalWrapper = document.createElement('div');
-  }
+  useEffect((): VoidFunction => {
+    modalRoot.appendChild(modalWrapper);
+    return (): void => {
+      modalRoot.removeChild(modalWrapper);
+    };
+  });
 
-  componentDidMount(): void {
-    this.modalRoot.appendChild(this.modalWrapper);
-  }
-
-  componentWillUnmount(): void {
-    this.modalRoot.removeChild(this.modalWrapper);
-  }
-
-  render(): React.ReactElement<PortalProps> {
-    return ReactDOM.createPortal(this.props.children, this.modalWrapper);
-  }
-}
+  return ReactDOM.createPortal(props.children, modalWrapper);
+};
 
 export default Modal;

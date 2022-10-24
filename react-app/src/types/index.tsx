@@ -31,7 +31,7 @@ export type Data = IDataElement[];
 
 export interface ICardItemProps {
   character: IDataElement | ICustomDataElement;
-  onClick?: () => void;
+  onClick?: VoidFunction;
   showFullInfo: boolean;
 }
 
@@ -95,7 +95,7 @@ export interface IButtonProps {
   isDisabled?: boolean;
   showMessage?: boolean;
   message?: string;
-  onClick?: () => void;
+  onClick?: VoidFunction;
 }
 
 export interface ICustomDataElement {
@@ -163,3 +163,5 @@ export interface IRequestParameters {
 export type PortalProps = {
   children: React.ReactNode;
 };
+
+export type VoidFunction = () => void;
