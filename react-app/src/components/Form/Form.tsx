@@ -61,7 +61,7 @@ const Form = (props: IFormProps): JSX.Element => {
               className="name-container__input submit-form__input"
               {...register('name', {
                 required: 'Name should contain at least 2 chars',
-                minLength: { value: 2, message: 'Name should contain at least 2 chars' },
+                minLength: { value: Numbers.Two, message: 'Name should contain at least 2 chars' },
               })}
             />
           </label>
