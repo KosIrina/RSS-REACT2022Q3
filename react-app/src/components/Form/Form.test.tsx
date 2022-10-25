@@ -100,12 +100,12 @@ describe('Form handle', (): void => {
     expect(submitButton).toBeEnabled();
 
     await user.click(submitButton);
-    expect(submitButton).toBeDisabled();
-    expect(screen.getByText(/Name should contain at least 2 chars/i)).toBeInTheDocument();
-    expect(screen.getByText(/Species should be selected/i)).toBeInTheDocument();
-    expect(screen.getByText(/Birth date should be selected/i)).toBeInTheDocument();
-    expect(screen.getByText(/Photo should be uploaded/i)).toBeInTheDocument();
-    expect(screen.getByText(/You should agree to create a character/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Name should contain at least 2 chars/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Species should be selected/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Birth date should be selected/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Photo should be uploaded/i)).toBeInTheDocument();
+    expect(await screen.findByText(/You should agree to create a character/i)).toBeInTheDocument();
+    expect(await screen.findByText(/create character/i)).toBeDisabled();
   });
 
   it('Should submit form on valid data', async (): Promise<void> => {
