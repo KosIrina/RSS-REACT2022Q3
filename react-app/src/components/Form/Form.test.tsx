@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Numbers } from '../../types';
 import Form from '.';
@@ -111,7 +111,9 @@ describe('Form handle', (): void => {
   it('Should submit form on valid data', async (): Promise<void> => {
     render(<Form addNewCard={jest.fn()} />);
 
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
+    jest.useFakeTimers();
+
     const nameInput = screen.getByRole('textbox');
     const speciesSelect = screen.getByRole('combobox');
     const optionToSelect = screen.getByRole('option', { name: 'Human' }) as HTMLOptionElement;
@@ -124,20 +126,23 @@ describe('Form handle', (): void => {
     expect(submitButton).toBeEnabled();
     await user.selectOptions(speciesSelect, optionToSelect);
     await user.type(birthdayInput, '1999-08-15');
-    fireEvent.change(fileInput, {
-      target: {
-        files: [new File(['file'], 'file.png', { type: 'image/png' })],
-      },
-    });
+    const imageFile = new File(['file'], 'file.png', { type: 'image/png' });
+    Object.defineProperty(fileInput, 'value', { value: imageFile.name });
+    fireEvent.change(fileInput);
     await user.click(agreeInput);
     await user.click(submitButton);
 
-    expect(submitButton).toBeDisabled();
-    expect(screen.getByText(/A new character successfully created!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/A new character successfully created!/i)).toBeInTheDocument();
     expect(screen.queryByText(/Name should contain at least 2 chars/i)).toBeNull();
     expect(screen.queryByText(/Species should be selected/i)).toBeNull();
     expect(screen.queryByText(/Birth date should be selected/i)).toBeNull();
     expect(screen.queryByText(/Photo should be uploaded/i)).toBeNull();
     expect(screen.queryByText(/You should agree to create a character/i)).toBeNull();
+
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(submitButton).toBeDisabled();
+    jest.useRealTimers();
   });
 });

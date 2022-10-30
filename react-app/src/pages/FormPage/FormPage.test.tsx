@@ -21,14 +21,12 @@ describe('Form page', (): void => {
     expect(submitButton).toBeEnabled();
     await user.selectOptions(speciesSelect, optionToSelect);
     await user.type(birthdayInput, '1999-08-15');
-    fireEvent.change(fileInput, {
-      target: {
-        files: [new File(['file'], 'file.png', { type: 'image/png' })],
-      },
-    });
+    const imageFile = new File(['file'], 'file.png', { type: 'image/png' });
+    Object.defineProperty(fileInput, 'value', { value: imageFile.name });
+    fireEvent.change(fileInput);
     await user.click(agreeInput);
     await user.click(submitButton);
 
-    expect(screen.getByText(/abc/i)).toBeInTheDocument();
+    expect(await screen.findByTestId('main-page-character-card')).toBeInTheDocument();
   });
 });
