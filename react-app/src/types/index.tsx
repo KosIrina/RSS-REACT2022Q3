@@ -1,3 +1,5 @@
+import { Dispatch } from 'react';
+
 export interface IDataElement {
   id: number;
   name: string;
@@ -45,7 +47,7 @@ export interface IFormValues {
   species: string;
   gender: boolean;
   birthday: string;
-  avatar: FileList;
+  avatar: FileList | null;
   agreement: boolean;
 }
 
@@ -110,3 +112,24 @@ export type PortalProps = {
 };
 
 export type VoidFunction = () => void;
+
+export interface IMainPageState {
+  characters: Data;
+  name: string;
+  isLoading: boolean;
+  errorMessage: string | null;
+}
+
+export interface IFormPageState extends IFormValues {
+  characters: CustomData;
+}
+
+export interface IAppState {
+  mainPage: IMainPageState;
+  formPage: IFormPageState;
+}
+
+export interface IAppContext {
+  state: IAppState;
+  dispatch: Dispatch<{ type: string; payload?: string | number | Data | CustomData }>;
+}

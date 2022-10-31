@@ -47,3 +47,15 @@ export const HTTP_STATUS_CODES = {
 };
 
 export const FAKE_CARDS_LENGTH = 10;
+
+export const REDUCER_ACTION_TYPES = {
+  searchByName: 'searchName',
+  sortByStatus: 'sortByStatus',
+  sortByGender: 'sortByGender',
+  sortAlphabetically: 'sortAlphabetically',
+  changePage: 'changePage',
+  changeCardsPerPage: 'changeCardsPerPage',
+  callApi: 'callApi',
+  successApi: 'success',
+  errorApi: 'error',
+};
