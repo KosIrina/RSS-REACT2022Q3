@@ -1,6 +1,6 @@
-import { EMPTY_STRING } from '../constants';
 import React, { createContext, ReactNode, useReducer } from 'react';
 import { IAppContext, IAppState } from '../types';
+import { EMPTY_STRING, LOCAL_STORAGE_KEYS } from '../constants';
 import { appReducer } from './AppReducer';
 
 export const AppContext = createContext({} as IAppContext);
@@ -9,7 +9,7 @@ export const AppState = ({ children }: { children: ReactNode }): JSX.Element => 
   const initialState: IAppState = {
     mainPage: {
       characters: [],
-      name: EMPTY_STRING,
+      name: localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue) || EMPTY_STRING,
       isLoading: false,
       errorMessage: null,
     },

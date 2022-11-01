@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { ICardListProps, ICustomDataElement, IDataElement } from 'types';
+import React, { useState, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ICustomDataElement, IDataElement } from 'types';
 import './CardList.css';
 import CardItem from '../CardItem';
 import Modal from '../UI/Modal';
 import Button from '../UI/Button';
+import { AppContext } from '../../state/AppState';
 
-const CardList = (props: ICardListProps): JSX.Element => {
+const CardList = (): JSX.Element => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [chosenCharacterInfo, setChosenCharacterInfo] = useState<
     IDataElement | ICustomDataElement | null
@@ -16,10 +18,13 @@ const CardList = (props: ICardListProps): JSX.Element => {
     setChosenCharacterInfo(chosenCharacterInfo ? chosenCharacterInfo : null);
   };
 
+  const { state } = useContext(AppContext);
+  const currentPage = useLocation().pathname.includes('form') ? state.formPage : state.mainPage;
+
   return (
     <>
       <ul className="main__cards-list" data-testid="main-characters-list">
-        {props.characters.map(
+        {currentPage.characters.map(
           (character: IDataElement | ICustomDataElement): JSX.Element => (
             <CardItem
               key={character.id}

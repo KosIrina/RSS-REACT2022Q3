@@ -29,10 +29,6 @@ export interface ICardItemProps {
   showFullInfo: boolean;
 }
 
-export interface ICardListProps {
-  characters: Data | CustomData;
-}
-
 export interface ILocalStorage {
   getItem(key: string): string;
   setItem(key: string, value: string): void;
