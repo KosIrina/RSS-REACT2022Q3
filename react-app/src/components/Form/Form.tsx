@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './Form.css';
 import './Input.css';
 import Button from '../../components/UI/Button';
-import { IFormProps, Numbers, IFormValues } from '../../types';
+import { AppContext } from '../../state/AppState';
+import { Numbers, IFormValues, ICustomDataElement, FormErrors } from '../../types';
 import {
   CHARACTER_GENDER,
   CHARACTER_STATUS,
@@ -11,15 +12,25 @@ import {
   FORM_SELECT_OPTIONS,
   FORM_SELECT_VALUES,
   ONE_SECOND,
+  REDUCER_ACTION_TYPES,
 } from '../../constants';
 
-const Form = (props: IFormProps): JSX.Element => {
+const Form = (): JSX.Element => {
+  const {
+    state: { formPage },
+    dispatch,
+  } = useContext(AppContext);
+
   const {
     register,
     formState: { errors, isDirty, isSubmitSuccessful },
     handleSubmit,
     reset,
+    setValue,
+    getValues,
+    trigger,
   } = useForm<IFormValues>({
+    mode: formPage.hasErrors ? 'onChange' : 'onSubmit',
     defaultValues: {
       name: EMPTY_STRING,
       status: false,
@@ -27,29 +38,73 @@ const Form = (props: IFormProps): JSX.Element => {
       gender: false,
       birthday: EMPTY_STRING,
       agreement: false,
+      avatar: null,
     },
   });
 
   const onSubmit: SubmitHandler<IFormValues> = (data): void => {
-    props.addNewCard({
+    const newCustomCard: ICustomDataElement = {
       id: self.crypto.randomUUID(),
       name: data.name,
       status: data.status ? CHARACTER_STATUS.dead : CHARACTER_STATUS.alive,
       species: `${data.species[Numbers.Zero].toUpperCase()}${data.species.slice(Numbers.One)}`,
       gender: data.gender ? CHARACTER_GENDER.female : CHARACTER_GENDER.male,
       birthDate: data.birthday,
-      avatar: URL.createObjectURL(data.avatar[Numbers.Zero]),
+      avatar: data.avatar ? URL.createObjectURL(data.avatar[Numbers.Zero]) : EMPTY_STRING,
+    };
+    dispatch({
+      type: REDUCER_ACTION_TYPES.updateCustomCards,
+      payload: newCustomCard,
+    });
+    dispatch({
+      type: REDUCER_ACTION_TYPES.updateFormErrors,
+      payload: false,
     });
     setTimeout((): void => {
       reset();
     }, ONE_SECOND);
   };
 
+  const onError: SubmitHandler<FormErrors> = (): void => {
+    dispatch({
+      type: REDUCER_ACTION_TYPES.updateFormErrors,
+      payload: true,
+    });
+  };
+
+  useEffect((): VoidFunction => {
+    if (formPage.hasErrors) {
+      trigger();
+    }
+    setValue('name', formPage.name, { shouldDirty: true });
+    setValue('status', formPage.status, { shouldDirty: true });
+    setValue('species', formPage.species, { shouldDirty: true });
+    setValue('gender', formPage.gender, { shouldDirty: true });
+    setValue('birthday', formPage.birthday, { shouldDirty: true });
+    setValue('agreement', formPage.agreement, { shouldDirty: true });
+
+    return (): void => {
+      dispatch({
+        type: REDUCER_ACTION_TYPES.updateFormValues,
+        payload: {
+          name: getValues('name'),
+          status: getValues('status'),
+          species: getValues('species'),
+          gender: getValues('gender'),
+          birthday: getValues('birthday'),
+          avatar: getValues('avatar'),
+          agreement: getValues('agreement'),
+        },
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, getValues, setValue, trigger]);
+
   return (
     <>
       <form
         className="main-page__submit-form submit-form"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, onError)}
         data-testid="submit-form"
       >
         <div className="submit-form__item name-container">

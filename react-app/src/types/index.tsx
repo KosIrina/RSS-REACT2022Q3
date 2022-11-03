@@ -1,4 +1,5 @@
 import { Dispatch } from 'react';
+import { FieldErrorsImpl } from 'react-hook-form';
 
 export interface IDataElement {
   id: number;
@@ -129,3 +130,15 @@ export interface IAppContext {
     payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
   }>;
 }
+
+export type FormErrors = Partial<
+  FieldErrorsImpl<{
+    name: string;
+    status: boolean;
+    species: string;
+    gender: boolean;
+    birthday: string;
+    avatar: FileList;
+    agreement: boolean;
+  }>
+>;
