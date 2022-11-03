@@ -1,14 +1,16 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import FormPage from '.';
+import App from '../../components/App';
 
 describe('Form page', (): void => {
   global.URL.createObjectURL = jest.fn();
   it('Should render card after submit', async (): Promise<void> => {
-    render(<FormPage />);
-
+    render(<App />, { wrapper: BrowserRouter });
     const user = userEvent.setup();
+    await user.click(screen.getByText('Form'));
+
     const nameInput = screen.getByRole('textbox');
     const speciesSelect = screen.getByRole('combobox');
     const optionToSelect = screen.getByRole('option', { name: 'Human' }) as HTMLOptionElement;
