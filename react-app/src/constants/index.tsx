@@ -58,4 +58,7 @@ export const REDUCER_ACTION_TYPES = {
   callApi: 'callApi',
   successApi: 'success',
   errorApi: 'error',
+  updateCustomCards: 'updateCustomCards',
+  updateFormValues: 'updateFormValues',
+  updateFormErrors: 'updateFormErrors',
 };

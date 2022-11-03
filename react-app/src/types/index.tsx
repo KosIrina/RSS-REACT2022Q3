@@ -73,10 +73,6 @@ export interface ICustomDataElement {
 
 export type CustomData = ICustomDataElement[];
 
-export interface IFormProps {
-  addNewCard: (card: ICustomDataElement) => void;
-}
-
 export enum Numbers {
   Zero = 0,
   One,
@@ -118,6 +114,7 @@ export interface IMainPageState {
 
 export interface IFormPageState extends IFormValues {
   characters: CustomData;
+  hasErrors: boolean;
 }
 
 export interface IAppState {
@@ -127,5 +124,8 @@ export interface IAppState {
 
 export interface IAppContext {
   state: IAppState;
-  dispatch: Dispatch<{ type: string; payload?: string | number | Data | CustomData }>;
+  dispatch: Dispatch<{
+    type: string;
+    payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+  }>;
 }

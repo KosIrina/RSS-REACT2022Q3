@@ -22,6 +22,7 @@ export const AppState = ({ children }: { children: ReactNode }): JSX.Element => 
       birthday: EMPTY_STRING,
       avatar: null,
       agreement: false,
+      hasErrors: false,
     },
   };
   const [state, dispatch] = useReducer(appReducer, initialState);
