@@ -12,6 +12,9 @@ export const AppState = ({ children }: { children: ReactNode }): JSX.Element => 
       name: localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue) || EMPTY_STRING,
       isLoading: false,
       errorMessage: null,
+      status: EMPTY_STRING,
+      gender: EMPTY_STRING,
+      alphabeticalOrder: EMPTY_STRING,
     },
     formPage: {
       characters: [],

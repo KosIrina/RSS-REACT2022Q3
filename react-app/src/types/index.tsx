@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch, ChangeEvent } from 'react';
 import { FieldErrorsImpl } from 'react-hook-form';
 
 export interface IDataElement {
@@ -82,7 +82,7 @@ export enum Numbers {
 }
 
 export interface ISearchBarProps {
-  updateMainPageState: (serachParameter?: string) => Promise<void>;
+  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
 }
 
 export interface IDataFromApi {
@@ -96,8 +96,11 @@ export interface IDataFromApi {
 }
 
 export interface IRequestParameters {
-  name: string;
-  page: number;
+  name?: string;
+  pageInApi?: number;
+  status?: string;
+  gender?: string;
+  alphabeticalOrder?: string;
 }
 
 export type PortalProps = {
@@ -111,6 +114,9 @@ export interface IMainPageState {
   name: string;
   isLoading: boolean;
   errorMessage: string | null;
+  status: string;
+  gender: string;
+  alphabeticalOrder: string;
 }
 
 export interface IFormPageState extends IFormValues {
@@ -142,3 +148,17 @@ export type FormErrors = Partial<
     agreement: boolean;
   }>
 >;
+
+export interface ISelectProps {
+  classes: {
+    select: string;
+    option: string;
+  };
+  selectOptions: string[];
+  selectedValue: string;
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export interface ICardsSortingProps {
+  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
+}

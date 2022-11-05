@@ -30,3 +30,10 @@
   text-align: center;
   transform: translate(-50%, -50%);
 }
+
+.main-page__search-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+}

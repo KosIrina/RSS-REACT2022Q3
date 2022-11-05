@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useContext } from 'react';
 import './MainPage.css';
 import SearchBar from '../../components/SearchBar';
+import CardsSorting from 'components/CardsSorting';
 import CardList from '../../components/CardList';
 import Loader from '../../components/Loader';
 import { AppContext } from '../../state/AppState';
@@ -15,15 +16,20 @@ const MainPage = (): JSX.Element => {
   } = useContext(AppContext);
 
   const updateMainPageState = useCallback(
-    async (searchParameter?: string): Promise<void> => {
+    async (newSearchParameter?: Record<string, unknown>): Promise<void> => {
       dispatch({ type: REDUCER_ACTION_TYPES.callApi });
       try {
-        const charactersData = searchParameter
-          ? await new CharactersAPI().getCharacters({
-              name: searchParameter,
-              page: Numbers.One,
-            })
-          : await new CharactersAPI().getCharacters();
+        const savedSearchParameters = {
+          name: mainPage.name,
+          pageInApi: Numbers.One,
+          status: mainPage.status,
+          gender: mainPage.gender,
+          alphabeticalOrder: mainPage.alphabeticalOrder,
+        };
+        const charactersData = await new CharactersAPI().getCharacters({
+          ...savedSearchParameters,
+          ...newSearchParameter,
+        });
         dispatch({ type: REDUCER_ACTION_TYPES.successApi, payload: charactersData });
       } catch (error) {
         dispatch({
@@ -32,7 +38,7 @@ const MainPage = (): JSX.Element => {
         });
       }
     },
-    [dispatch]
+    [dispatch, mainPage.alphabeticalOrder, mainPage.gender, mainPage.name, mainPage.status]
   );
 
   useEffect((): void => {
@@ -44,7 +50,10 @@ const MainPage = (): JSX.Element => {
 
   return (
     <div className="main-wrapper">
-      {<SearchBar updateMainPageState={updateMainPageState} />}
+      <div className="main-page__search-options">
+        {<SearchBar updateMainPageState={updateMainPageState} />}
+        {<CardsSorting updateMainPageState={updateMainPageState} />}
+      </div>
       {mainPage.isLoading && <Loader />}
       {mainPage.errorMessage && (
         <div className="main__error-message" data-testid="cards-error-message">

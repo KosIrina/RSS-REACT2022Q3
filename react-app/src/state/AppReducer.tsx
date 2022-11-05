@@ -42,6 +42,21 @@ const mainPageReducer = (
         errorMessage: action.payload as string,
         characters: [],
       };
+    case REDUCER_ACTION_TYPES.sortByStatus:
+      return {
+        ...state,
+        status: action.payload as string,
+      };
+    case REDUCER_ACTION_TYPES.sortByGender:
+      return {
+        ...state,
+        gender: action.payload as string,
+      };
+    case REDUCER_ACTION_TYPES.sortAlphabetically:
+      return {
+        ...state,
+        alphabeticalOrder: action.payload as string,
+      };
     default:
       return state;
   }

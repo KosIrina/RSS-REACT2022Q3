@@ -1,0 +1,17 @@
+.main-page__sorting-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.sorting-container__sort-by-status,
+.sorting-container__sort-by-gender,
+.sorting-container__sort-alphabetical,
+.sorting-container__sort-per-page {
+  padding: 4px 2px 2px 2px;
+  border: none;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}

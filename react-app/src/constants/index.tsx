@@ -34,6 +34,8 @@ export const URL_ENDPOINTS = {
 export const URL_QUERY_KEYS = {
   name: 'name',
   page: 'page',
+  status: 'status',
+  gender: 'gender',
 };
 
 export const API_ERROR_MESSAGES = {
@@ -61,4 +63,16 @@ export const REDUCER_ACTION_TYPES = {
   updateCustomCards: 'updateCustomCards',
   updateFormValues: 'updateFormValues',
   updateFormErrors: 'updateFormErrors',
+};
+
+export const ALPHABETICAL_SORT = {
+  ascending: 'alphabetically, from A to Z',
+  descending: 'alphabetically, from Z to A',
+};
+
+export const SEARCH_SELECT_OPTIONS = {
+  byStatus: ['--by status--', 'alive', 'dead', 'unknown'],
+  byGender: ['--by gender--', 'female', 'male', 'genderless', 'unknown'],
+  alphabetically: ['--alphabetically--', ALPHABETICAL_SORT.ascending, ALPHABETICAL_SORT.descending],
+  cardsPerPage: ['10 items/page', '20 items/page', '30 items/page'],
 };

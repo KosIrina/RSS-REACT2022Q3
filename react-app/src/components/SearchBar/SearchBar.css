@@ -1,9 +1,9 @@
-.main-page__search-form {
+.main-page__search-bar {
   position: relative;
   align-self: center;
 }
 
-.main-page__search-form::before {
+.main-page__search-bar::before {
   content: '';
   position: absolute;
   top: 12px;

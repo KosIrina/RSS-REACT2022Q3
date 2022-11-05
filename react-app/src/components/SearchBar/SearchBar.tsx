@@ -27,7 +27,7 @@ const SearchBar = (props: ISearchBarProps): JSX.Element => {
   const onFormSubmit = async (event: KeyboardEvent<HTMLInputElement>): Promise<void> => {
     if (event.code === ENTER_KEY_CODES.enter || event.code === ENTER_KEY_CODES.enterNumpad) {
       event.preventDefault();
-      await props.updateMainPageState(mainPage.name);
+      await props.updateMainPageState({ name: mainPage.name });
     }
   };
 
@@ -38,7 +38,7 @@ const SearchBar = (props: ISearchBarProps): JSX.Element => {
 
   return (
     <>
-      <form className="main-page__search-form">
+      <div className="main-page__search-bar">
         <input
           type="search"
           className="main-page__search-input"
@@ -50,7 +50,7 @@ const SearchBar = (props: ISearchBarProps): JSX.Element => {
             onFormSubmit(event)
           }
         />
-      </form>
+      </div>
     </>
   );
 };
