@@ -154,9 +154,9 @@ describe('Form handle', (): void => {
     expect(screen.queryByText(/Photo should be uploaded/i)).toBeNull();
     expect(screen.queryByText(/You should agree to create a character/i)).toBeNull();
 
-    act(() => {
+    /* act(() => {
       jest.runAllTimers();
-    });
+    }); */
     expect(submitButton).toBeDisabled();
     jest.useRealTimers();
   });
