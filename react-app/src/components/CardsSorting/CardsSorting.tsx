@@ -26,7 +26,7 @@ const CardsSorting = (props: ICardsSortingProps): JSX.Element => {
               ? EMPTY_STRING
               : event.target.value;
           dispatch({ type: REDUCER_ACTION_TYPES.sortByStatus, payload: newParameter });
-          await props.updateMainPageState({ status: newParameter });
+          await props.updateMainPageState({ status: newParameter, currentPage: Numbers.One });
         }}
       />
 
@@ -43,7 +43,7 @@ const CardsSorting = (props: ICardsSortingProps): JSX.Element => {
               ? EMPTY_STRING
               : event.target.value;
           dispatch({ type: REDUCER_ACTION_TYPES.sortByGender, payload: newParameter });
-          await props.updateMainPageState({ gender: newParameter });
+          await props.updateMainPageState({ gender: newParameter, currentPage: Numbers.One });
         }}
       />
 
@@ -60,7 +60,26 @@ const CardsSorting = (props: ICardsSortingProps): JSX.Element => {
               ? EMPTY_STRING
               : event.target.value;
           dispatch({ type: REDUCER_ACTION_TYPES.sortAlphabetically, payload: newParameter });
-          await props.updateMainPageState({ alphabeticalOrder: newParameter });
+          await props.updateMainPageState({
+            alphabeticalOrder: newParameter,
+            currentPage: Numbers.One,
+          });
+        }}
+      />
+
+      <Select
+        classes={{
+          select: 'sorting-container__sort-per-page',
+          option: 'sorting-container__per-page-option',
+        }}
+        selectOptions={SEARCH_SELECT_OPTIONS.cardsPerPage}
+        selectedValue={mainPage.cardsPerPage}
+        onChange={async (event: ChangeEvent<HTMLSelectElement>): Promise<void> => {
+          dispatch({ type: REDUCER_ACTION_TYPES.changeCardsPerPage, payload: event.target.value });
+          await props.updateMainPageState({
+            amountPerPage: event.target.value,
+            currentPage: Numbers.One,
+          });
         }}
       />
     </div>

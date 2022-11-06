@@ -1,0 +1,24 @@
+.pagination-container__title {
+  padding-right: 5px;
+}
+
+.pagination-container__pages-separator {
+  padding: 0 5px;
+}
+
+.pagination-container__current-page {
+  padding: 4px 2px 2px 2px;
+  border: none;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pagination-container__current-page::-webkit-scrollbar {
+  width: 5px;
+}
+
+.pagination-container__current-page::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ccccff;
+}

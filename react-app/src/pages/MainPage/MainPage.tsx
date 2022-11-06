@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback, useContext } from 'react';
 import './MainPage.css';
 import SearchBar from '../../components/SearchBar';
-import CardsSorting from 'components/CardsSorting';
+import CardsSorting from '../../components/CardsSorting';
+import Pagination from '../../components/Pagination';
 import CardList from '../../components/CardList';
 import Loader from '../../components/Loader';
 import { AppContext } from '../../state/AppState';
@@ -25,12 +26,18 @@ const MainPage = (): JSX.Element => {
           status: mainPage.status,
           gender: mainPage.gender,
           alphabeticalOrder: mainPage.alphabeticalOrder,
+          amountPerPage: mainPage.cardsPerPage,
+          currentPage: mainPage.currentPage,
         };
         const charactersData = await new CharactersAPI().getCharacters({
           ...savedSearchParameters,
           ...newSearchParameter,
         });
-        dispatch({ type: REDUCER_ACTION_TYPES.successApi, payload: charactersData });
+        dispatch({
+          type: REDUCER_ACTION_TYPES.successApi,
+          payload: charactersData.cards,
+          totalPages: charactersData.pagesAmount,
+        });
       } catch (error) {
         dispatch({
           type: REDUCER_ACTION_TYPES.errorApi,
@@ -38,7 +45,15 @@ const MainPage = (): JSX.Element => {
         });
       }
     },
-    [dispatch, mainPage.alphabeticalOrder, mainPage.gender, mainPage.name, mainPage.status]
+    [
+      dispatch,
+      mainPage.alphabeticalOrder,
+      mainPage.cardsPerPage,
+      mainPage.currentPage,
+      mainPage.gender,
+      mainPage.name,
+      mainPage.status,
+    ]
   );
 
   useEffect((): void => {
@@ -51,8 +66,9 @@ const MainPage = (): JSX.Element => {
   return (
     <div className="main-wrapper">
       <div className="main-page__search-options">
-        {<SearchBar updateMainPageState={updateMainPageState} />}
-        {<CardsSorting updateMainPageState={updateMainPageState} />}
+        <SearchBar updateMainPageState={updateMainPageState} />
+        <CardsSorting updateMainPageState={updateMainPageState} />
+        <Pagination updateMainPageState={updateMainPageState} />
       </div>
       {mainPage.isLoading && <Loader />}
       {mainPage.errorMessage && (

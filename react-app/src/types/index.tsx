@@ -87,7 +87,7 @@ export interface ISearchBarProps {
 
 export interface IDataFromApi {
   info: {
-    count: number | null;
+    count: number;
     pages: number;
     next: string | null;
     prev: number | null;
@@ -101,6 +101,8 @@ export interface IRequestParameters {
   status?: string;
   gender?: string;
   alphabeticalOrder?: string;
+  amountPerPage?: string;
+  currentPage?: number;
 }
 
 export type PortalProps = {
@@ -117,6 +119,9 @@ export interface IMainPageState {
   status: string;
   gender: string;
   alphabeticalOrder: string;
+  cardsPerPage: string;
+  pagesAmount: number;
+  currentPage: number;
 }
 
 export interface IFormPageState extends IFormValues {
@@ -134,6 +139,7 @@ export interface IAppContext {
   dispatch: Dispatch<{
     type: string;
     payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+    totalPages?: number;
   }>;
 }
 
@@ -154,11 +160,15 @@ export interface ISelectProps {
     select: string;
     option: string;
   };
-  selectOptions: string[];
-  selectedValue: string;
+  selectOptions: string[] | number[];
+  selectedValue: string | number;
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export interface ICardsSortingProps {
+  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
+}
+
+export interface IPaginationProps {
   updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
 }

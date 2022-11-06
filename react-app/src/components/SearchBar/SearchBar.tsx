@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useEffect, useRef, useContext } from 'react';
 import { AppContext } from '../../state/AppState';
 import './SearchBar.css';
-import { ISearchBarProps, VoidFunction } from '../../types';
+import { ISearchBarProps, VoidFunction, Numbers } from '../../types';
 import {
   ENTER_KEY_CODES,
   EMPTY_STRING,
@@ -27,7 +27,7 @@ const SearchBar = (props: ISearchBarProps): JSX.Element => {
   const onFormSubmit = async (event: KeyboardEvent<HTMLInputElement>): Promise<void> => {
     if (event.code === ENTER_KEY_CODES.enter || event.code === ENTER_KEY_CODES.enterNumpad) {
       event.preventDefault();
-      await props.updateMainPageState({ name: mainPage.name });
+      await props.updateMainPageState({ name: mainPage.name, currentPage: Numbers.One });
     }
   };
 

@@ -6,6 +6,7 @@ import {
   IFormPageState,
   IMainPageState,
   IFormValues,
+  Numbers,
 } from '../types';
 import { REDUCER_ACTION_TYPES } from '../constants';
 
@@ -14,12 +15,14 @@ const mainPageReducer = (
   action: {
     type: string;
     payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+    totalPages?: number;
   }
 ): IMainPageState => {
   switch (action.type) {
     case REDUCER_ACTION_TYPES.searchByName:
       return {
         ...state,
+        currentPage: Numbers.One,
         name: action.payload as string,
       };
     case REDUCER_ACTION_TYPES.callApi:
@@ -34,6 +37,7 @@ const mainPageReducer = (
         isLoading: false,
         errorMessage: null,
         characters: action.payload as Data,
+        pagesAmount: action.totalPages as number,
       };
     case REDUCER_ACTION_TYPES.errorApi:
       return {
@@ -41,21 +45,36 @@ const mainPageReducer = (
         isLoading: false,
         errorMessage: action.payload as string,
         characters: [],
+        pagesAmount: Numbers.One,
       };
     case REDUCER_ACTION_TYPES.sortByStatus:
       return {
         ...state,
+        currentPage: Numbers.One,
         status: action.payload as string,
       };
     case REDUCER_ACTION_TYPES.sortByGender:
       return {
         ...state,
+        currentPage: Numbers.One,
         gender: action.payload as string,
       };
     case REDUCER_ACTION_TYPES.sortAlphabetically:
       return {
         ...state,
+        currentPage: Numbers.One,
         alphabeticalOrder: action.payload as string,
+      };
+    case REDUCER_ACTION_TYPES.changeCardsPerPage:
+      return {
+        ...state,
+        currentPage: Numbers.One,
+        cardsPerPage: action.payload as string,
+      };
+    case REDUCER_ACTION_TYPES.changePage:
+      return {
+        ...state,
+        currentPage: +(action.payload as string),
       };
     default:
       return state;
@@ -101,6 +120,7 @@ export const appReducer = (
   action: {
     type: string;
     payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+    totalPages?: number;
   }
 ): IAppState => ({
   mainPage: mainPageReducer(mainPage, action),

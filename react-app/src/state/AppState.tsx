@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useReducer } from 'react';
-import { IAppContext, IAppState } from '../types';
+import { IAppContext, IAppState, Numbers } from '../types';
 import { EMPTY_STRING, LOCAL_STORAGE_KEYS } from '../constants';
 import { appReducer } from './AppReducer';
 
@@ -15,6 +15,9 @@ export const AppState = ({ children }: { children: ReactNode }): JSX.Element => 
       status: EMPTY_STRING,
       gender: EMPTY_STRING,
       alphabeticalOrder: EMPTY_STRING,
+      cardsPerPage: EMPTY_STRING,
+      pagesAmount: Numbers.One,
+      currentPage: Numbers.One,
     },
     formPage: {
       characters: [],
