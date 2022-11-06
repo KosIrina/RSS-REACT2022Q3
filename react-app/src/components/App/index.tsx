@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from '../Layout';
 import MainPage from '../../pages/MainPage';
+import CardPage from '../../pages/CardPage';
 import AboutPage from '../../pages/AboutPage';
 import FormPage from '../../pages/FormPage';
 import PageNotFound from '../../pages/PageNotFound';
@@ -14,6 +15,7 @@ function App(): JSX.Element {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<MainPage />} />
+            <Route path="characters/:id" element={<CardPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="form" element={<FormPage />} />
             <Route path="404" element={<PageNotFound />} />

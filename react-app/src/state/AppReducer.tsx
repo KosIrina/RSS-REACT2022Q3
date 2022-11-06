@@ -7,6 +7,7 @@ import {
   IMainPageState,
   IFormValues,
   Numbers,
+  IDataElement,
 } from '../types';
 import { REDUCER_ACTION_TYPES } from '../constants';
 
@@ -14,7 +15,16 @@ const mainPageReducer = (
   state: IMainPageState,
   action: {
     type: string;
-    payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+    payload?:
+      | string
+      | number
+      | Data
+      | CustomData
+      | ICustomDataElement
+      | IFormValues
+      | boolean
+      | IDataElement
+      | null;
     totalPages?: number;
   }
 ): IMainPageState => {
@@ -76,6 +86,11 @@ const mainPageReducer = (
         ...state,
         currentPage: +(action.payload as string),
       };
+    case REDUCER_ACTION_TYPES.updateSelectedCard:
+      return {
+        ...state,
+        selectedCharacter: action.payload as IDataElement | null,
+      };
     default:
       return state;
   }
@@ -85,7 +100,16 @@ const formPageReducer = (
   state: IFormPageState,
   action: {
     type: string;
-    payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+    payload?:
+      | string
+      | number
+      | Data
+      | CustomData
+      | ICustomDataElement
+      | IFormValues
+      | boolean
+      | IDataElement
+      | null;
   }
 ): IFormPageState => {
   switch (action.type) {
@@ -110,6 +134,11 @@ const formPageReducer = (
         ...state,
         hasErrors: action.payload as boolean,
       };
+    case REDUCER_ACTION_TYPES.updateSelectedCustomCard:
+      return {
+        ...state,
+        selectedCharacter: action.payload as ICustomDataElement | null,
+      };
     default:
       return state;
   }
@@ -119,7 +148,16 @@ export const appReducer = (
   { mainPage, formPage }: IAppState,
   action: {
     type: string;
-    payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+    payload?:
+      | string
+      | number
+      | Data
+      | CustomData
+      | ICustomDataElement
+      | IFormValues
+      | boolean
+      | IDataElement
+      | null;
     totalPages?: number;
   }
 ): IAppState => ({

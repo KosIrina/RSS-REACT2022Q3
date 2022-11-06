@@ -63,6 +63,8 @@ export const REDUCER_ACTION_TYPES = {
   updateCustomCards: 'updateCustomCards',
   updateFormValues: 'updateFormValues',
   updateFormErrors: 'updateFormErrors',
+  updateSelectedCard: 'updateSelectedCard',
+  updateSelectedCustomCard: 'updateSelectedCustomCard',
 };
 
 export const ALPHABETICAL_SORT = {

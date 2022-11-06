@@ -26,7 +26,6 @@ export type Data = IDataElement[];
 
 export interface ICardItemProps {
   character: IDataElement | ICustomDataElement;
-  onClick?: VoidFunction;
   showFullInfo: boolean;
 }
 
@@ -105,10 +104,6 @@ export interface IRequestParameters {
   currentPage?: number;
 }
 
-export type PortalProps = {
-  children: React.ReactNode;
-};
-
 export type VoidFunction = () => void;
 
 export interface IMainPageState {
@@ -122,11 +117,13 @@ export interface IMainPageState {
   cardsPerPage: string;
   pagesAmount: number;
   currentPage: number;
+  selectedCharacter: IDataElement | null;
 }
 
 export interface IFormPageState extends IFormValues {
   characters: CustomData;
   hasErrors: boolean;
+  selectedCharacter: ICustomDataElement | null;
 }
 
 export interface IAppState {
@@ -138,7 +135,16 @@ export interface IAppContext {
   state: IAppState;
   dispatch: Dispatch<{
     type: string;
-    payload?: string | number | Data | CustomData | ICustomDataElement | IFormValues | boolean;
+    payload?:
+      | string
+      | number
+      | Data
+      | CustomData
+      | ICustomDataElement
+      | IFormValues
+      | boolean
+      | IDataElement
+      | null;
     totalPages?: number;
   }>;
 }

@@ -18,6 +18,7 @@ export const AppState = ({ children }: { children: ReactNode }): JSX.Element => 
       cardsPerPage: EMPTY_STRING,
       pagesAmount: Numbers.One,
       currentPage: Numbers.One,
+      selectedCharacter: null,
     },
     formPage: {
       characters: [],
@@ -29,6 +30,7 @@ export const AppState = ({ children }: { children: ReactNode }): JSX.Element => 
       avatar: null,
       agreement: false,
       hasErrors: false,
+      selectedCharacter: null,
     },
   };
   const [state, dispatch] = useReducer(appReducer, initialState);

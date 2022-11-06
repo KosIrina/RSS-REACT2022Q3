@@ -1,0 +1,10 @@
+.main__all-characters-link {
+  padding: 5px 5px 2px 5px;
+  border: 2px dashed #353535;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.main__all-characters-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

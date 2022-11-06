@@ -42,3 +42,11 @@
 .navigation__link.active {
   text-shadow: 4px 3px 0 #fff, 9px 8px 0 rgba(0, 0, 0, 0.15);
 }
+
+.navigation__link.character-link {
+  display: none;
+}
+
+.navigation__link.character-link.active {
+  display: block;
+}
