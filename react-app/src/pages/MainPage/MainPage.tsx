@@ -1,67 +1,64 @@
-import React, { useEffect, useCallback, useContext } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useAppSelector, useAppDispatch } from '../../customHooks';
+import { callApi, errorApi, successApi } from '../../state/AppReducer';
 import './MainPage.css';
 import SearchBar from '../../components/SearchBar';
 import CardsSorting from '../../components/CardsSorting';
 import Pagination from '../../components/Pagination';
 import CardList from '../../components/CardList';
 import Loader from '../../components/Loader';
-import { AppContext } from '../../state/AppState';
 import CharactersAPI from '../../api/charactersApi';
-import { API_ERROR_MESSAGES, REDUCER_ACTION_TYPES } from '../../constants';
+import { API_ERROR_MESSAGES } from '../../constants';
 import { Numbers } from '../../types';
 
 const MainPage = (): JSX.Element => {
-  const {
-    state: { mainPage },
-    dispatch,
-  } = useContext(AppContext);
+  const state = useAppSelector((state) => state.mainState);
+  const dispatch = useAppDispatch();
 
   const updateMainPageState = useCallback(
     async (newSearchParameter?: Record<string, unknown>): Promise<void> => {
-      dispatch({ type: REDUCER_ACTION_TYPES.callApi });
+      dispatch(callApi());
       try {
         const savedSearchParameters = {
-          name: mainPage.name,
+          name: state.name,
           pageInApi: Numbers.One,
-          status: mainPage.status,
-          gender: mainPage.gender,
-          alphabeticalOrder: mainPage.alphabeticalOrder,
-          amountPerPage: mainPage.cardsPerPage,
-          currentPage: mainPage.currentPage,
+          status: state.status,
+          gender: state.gender,
+          alphabeticalOrder: state.alphabeticalOrder,
+          amountPerPage: state.cardsPerPage,
+          currentPage: state.currentPage,
         };
         const charactersData = await new CharactersAPI().getCharacters({
           ...savedSearchParameters,
           ...newSearchParameter,
         });
-        dispatch({
-          type: REDUCER_ACTION_TYPES.successApi,
-          payload: charactersData.cards,
-          totalPages: charactersData.pagesAmount,
-        });
+        dispatch(
+          successApi({
+            data: charactersData.cards,
+            totalPages: charactersData.pagesAmount,
+          })
+        );
       } catch (error) {
-        dispatch({
-          type: REDUCER_ACTION_TYPES.errorApi,
-          payload: error instanceof Error ? error.message : API_ERROR_MESSAGES.unknown,
-        });
+        dispatch(errorApi(error instanceof Error ? error.message : API_ERROR_MESSAGES.unknown));
       }
     },
     [
       dispatch,
-      mainPage.alphabeticalOrder,
-      mainPage.cardsPerPage,
-      mainPage.currentPage,
-      mainPage.gender,
-      mainPage.name,
-      mainPage.status,
+      state.alphabeticalOrder,
+      state.cardsPerPage,
+      state.currentPage,
+      state.gender,
+      state.name,
+      state.status,
     ]
   );
 
   useEffect((): void => {
-    if (!mainPage.characters.length && !mainPage.errorMessage) {
+    if (!state.characters.length && !state.errorMessage) {
       updateMainPageState();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mainPage.characters.length, updateMainPageState]);
+  }, [state.characters.length, updateMainPageState]);
 
   return (
     <div className="main-wrapper">
@@ -70,15 +67,13 @@ const MainPage = (): JSX.Element => {
         <CardsSorting updateMainPageState={updateMainPageState} />
         <Pagination updateMainPageState={updateMainPageState} />
       </div>
-      {mainPage.isLoading && <Loader />}
-      {mainPage.errorMessage && (
+      {state.isLoading && <Loader />}
+      {state.errorMessage && (
         <div className="main__error-message" data-testid="cards-error-message">
-          {mainPage.errorMessage}
+          {state.errorMessage}
         </div>
       )}
-      {!!mainPage.characters.length && !mainPage.isLoading && !mainPage.errorMessage && (
-        <CardList />
-      )}
+      {!!state.characters.length && !state.isLoading && !state.errorMessage && <CardList />}
     </div>
   );
 };

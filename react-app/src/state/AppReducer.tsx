@@ -1,7 +1,6 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
-  CustomData,
   Data,
-  IAppState,
   ICustomDataElement,
   IFormPageState,
   IMainPageState,
@@ -9,158 +8,120 @@ import {
   Numbers,
   IDataElement,
 } from '../types';
-import { REDUCER_ACTION_TYPES } from '../constants';
+import { LOCAL_STORAGE_KEYS, EMPTY_STRING } from '../constants';
 
-const mainPageReducer = (
-  state: IMainPageState,
-  action: {
-    type: string;
-    payload?:
-      | string
-      | number
-      | Data
-      | CustomData
-      | ICustomDataElement
-      | IFormValues
-      | boolean
-      | IDataElement
-      | null;
-    totalPages?: number;
-  }
-): IMainPageState => {
-  switch (action.type) {
-    case REDUCER_ACTION_TYPES.searchByName:
-      return {
-        ...state,
-        currentPage: Numbers.One,
-        name: action.payload as string,
-      };
-    case REDUCER_ACTION_TYPES.callApi:
-      return {
-        ...state,
-        isLoading: true,
-        errorMessage: null,
-      };
-    case REDUCER_ACTION_TYPES.successApi:
-      return {
-        ...state,
-        isLoading: false,
-        errorMessage: null,
-        characters: action.payload as Data,
-        pagesAmount: action.totalPages as number,
-      };
-    case REDUCER_ACTION_TYPES.errorApi:
-      return {
-        ...state,
-        isLoading: false,
-        errorMessage: action.payload as string,
-        characters: [],
-        pagesAmount: Numbers.One,
-      };
-    case REDUCER_ACTION_TYPES.sortByStatus:
-      return {
-        ...state,
-        currentPage: Numbers.One,
-        status: action.payload as string,
-      };
-    case REDUCER_ACTION_TYPES.sortByGender:
-      return {
-        ...state,
-        currentPage: Numbers.One,
-        gender: action.payload as string,
-      };
-    case REDUCER_ACTION_TYPES.sortAlphabetically:
-      return {
-        ...state,
-        currentPage: Numbers.One,
-        alphabeticalOrder: action.payload as string,
-      };
-    case REDUCER_ACTION_TYPES.changeCardsPerPage:
-      return {
-        ...state,
-        currentPage: Numbers.One,
-        cardsPerPage: action.payload as string,
-      };
-    case REDUCER_ACTION_TYPES.changePage:
-      return {
-        ...state,
-        currentPage: +(action.payload as string),
-      };
-    case REDUCER_ACTION_TYPES.updateSelectedCard:
-      return {
-        ...state,
-        selectedCharacter: action.payload as IDataElement | null,
-      };
-    default:
-      return state;
-  }
+const initialMainPageState: IMainPageState = {
+  characters: [],
+  name: localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue) || EMPTY_STRING,
+  isLoading: false,
+  errorMessage: null,
+  status: EMPTY_STRING,
+  gender: EMPTY_STRING,
+  alphabeticalOrder: EMPTY_STRING,
+  cardsPerPage: EMPTY_STRING,
+  pagesAmount: Numbers.One,
+  currentPage: Numbers.One,
+  selectedCharacter: null,
 };
 
-const formPageReducer = (
-  state: IFormPageState,
-  action: {
-    type: string;
-    payload?:
-      | string
-      | number
-      | Data
-      | CustomData
-      | ICustomDataElement
-      | IFormValues
-      | boolean
-      | IDataElement
-      | null;
-  }
-): IFormPageState => {
-  switch (action.type) {
-    case REDUCER_ACTION_TYPES.updateCustomCards:
-      return {
-        ...state,
-        characters: [action.payload as ICustomDataElement, ...state.characters],
-      };
-    case REDUCER_ACTION_TYPES.updateFormValues:
-      return {
-        ...state,
-        name: (action.payload as IFormValues).name,
-        status: (action.payload as IFormValues).status,
-        species: (action.payload as IFormValues).species,
-        gender: (action.payload as IFormValues).gender,
-        birthday: (action.payload as IFormValues).birthday,
-        avatar: (action.payload as IFormValues).avatar,
-        agreement: (action.payload as IFormValues).agreement,
-      };
-    case REDUCER_ACTION_TYPES.updateFormErrors:
-      return {
-        ...state,
-        hasErrors: action.payload as boolean,
-      };
-    case REDUCER_ACTION_TYPES.updateSelectedCustomCard:
-      return {
-        ...state,
-        selectedCharacter: action.payload as ICustomDataElement | null,
-      };
-    default:
-      return state;
-  }
-};
-
-export const appReducer = (
-  { mainPage, formPage }: IAppState,
-  action: {
-    type: string;
-    payload?:
-      | string
-      | number
-      | Data
-      | CustomData
-      | ICustomDataElement
-      | IFormValues
-      | boolean
-      | IDataElement
-      | null;
-    totalPages?: number;
-  }
-): IAppState => ({
-  mainPage: mainPageReducer(mainPage, action),
-  formPage: formPageReducer(formPage, action),
+const mainPageSlice = createSlice({
+  name: 'mainPage',
+  initialState: initialMainPageState,
+  reducers: {
+    searchByName(state, action: PayloadAction<string>) {
+      state.currentPage = Numbers.One;
+      state.name = action.payload;
+    },
+    callApi(state) {
+      state.isLoading = true;
+      state.errorMessage = null;
+    },
+    successApi(state, action: PayloadAction<{ data: Data; totalPages: number }>) {
+      state.isLoading = false;
+      state.errorMessage = null;
+      state.characters = action.payload.data;
+      state.pagesAmount = action.payload.totalPages;
+    },
+    errorApi(state, action: PayloadAction<string>) {
+      state.isLoading = false;
+      state.errorMessage = action.payload;
+      state.characters = [];
+      state.pagesAmount = Numbers.One;
+    },
+    sortByStatus(state, action: PayloadAction<string>) {
+      state.currentPage = Numbers.One;
+      state.status = action.payload;
+    },
+    sortByGender(state, action: PayloadAction<string>) {
+      state.currentPage = Numbers.One;
+      state.gender = action.payload;
+    },
+    sortAlphabetically(state, action: PayloadAction<string>) {
+      state.currentPage = Numbers.One;
+      state.alphabeticalOrder = action.payload;
+    },
+    changeCardsPerPage(state, action: PayloadAction<string>) {
+      state.currentPage = Numbers.One;
+      state.cardsPerPage = action.payload;
+    },
+    changePage(state, action: PayloadAction<string>) {
+      state.currentPage = +action.payload;
+    },
+    updateSelectedCard(state, action: PayloadAction<IDataElement | null>) {
+      state.selectedCharacter = action.payload;
+    },
+  },
 });
+
+const initialFormPageState: IFormPageState = {
+  characters: [],
+  name: EMPTY_STRING,
+  status: false,
+  species: EMPTY_STRING,
+  gender: false,
+  birthday: EMPTY_STRING,
+  agreement: false,
+  hasErrors: false,
+  selectedCharacter: null,
+};
+
+const formPageSlice = createSlice({
+  name: 'formPage',
+  initialState: initialFormPageState,
+  reducers: {
+    updateCustomCards(state, action: PayloadAction<ICustomDataElement>) {
+      state.characters.unshift(action.payload);
+    },
+    updateFormValues(state, action: PayloadAction<Omit<IFormValues, 'avatar'>>) {
+      state.name = action.payload.name;
+      state.status = action.payload.status;
+      state.species = action.payload.species;
+      state.gender = action.payload.gender;
+      state.birthday = action.payload.birthday;
+      state.agreement = action.payload.agreement;
+    },
+    updateFormErrors(state, action: PayloadAction<boolean>) {
+      state.hasErrors = action.payload;
+    },
+    updateSelectedCustomCard(state, action: PayloadAction<ICustomDataElement | null>) {
+      state.selectedCharacter = action.payload;
+    },
+  },
+});
+
+export const {
+  searchByName,
+  callApi,
+  successApi,
+  errorApi,
+  sortByStatus,
+  sortByGender,
+  sortAlphabetically,
+  changeCardsPerPage,
+  changePage,
+  updateSelectedCard,
+} = mainPageSlice.actions;
+export const { updateCustomCards, updateFormValues, updateFormErrors, updateSelectedCustomCard } =
+  formPageSlice.actions;
+export const mainPageReducer = mainPageSlice.reducer;
+export const formPageReducer = formPageSlice.reducer;

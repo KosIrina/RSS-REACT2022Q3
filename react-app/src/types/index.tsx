@@ -1,5 +1,6 @@
-import { Dispatch, ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { FieldErrorsImpl } from 'react-hook-form';
+import store from '../state/AppState';
 
 export interface IDataElement {
   id: number;
@@ -120,33 +121,10 @@ export interface IMainPageState {
   selectedCharacter: IDataElement | null;
 }
 
-export interface IFormPageState extends IFormValues {
+export interface IFormPageState extends Omit<IFormValues, 'avatar'> {
   characters: CustomData;
   hasErrors: boolean;
   selectedCharacter: ICustomDataElement | null;
-}
-
-export interface IAppState {
-  mainPage: IMainPageState;
-  formPage: IFormPageState;
-}
-
-export interface IAppContext {
-  state: IAppState;
-  dispatch: Dispatch<{
-    type: string;
-    payload?:
-      | string
-      | number
-      | Data
-      | CustomData
-      | ICustomDataElement
-      | IFormValues
-      | boolean
-      | IDataElement
-      | null;
-    totalPages?: number;
-  }>;
 }
 
 export type FormErrors = Partial<
@@ -178,3 +156,7 @@ export interface ICardsSortingProps {
 export interface IPaginationProps {
   updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
 }
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

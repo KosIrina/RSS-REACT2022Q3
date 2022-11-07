@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { useAppSelector } from '../../customHooks';
 import { ICustomDataElement, IDataElement } from 'types';
 import './CardList.css';
 import CardItem from '../CardItem';
-import { AppContext } from '../../state/AppState';
 
 const CardList = (): JSX.Element => {
-  const { state } = useContext(AppContext);
-  const currentPage = useLocation().pathname.includes('form') ? state.formPage : state.mainPage;
+  const state = useAppSelector((state) => state);
+  const currentPage = useLocation().pathname.includes('form') ? state.formState : state.mainState;
 
   return (
     <>

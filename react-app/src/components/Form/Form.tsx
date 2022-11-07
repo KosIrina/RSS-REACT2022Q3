@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useAppSelector, useAppDispatch } from '../../customHooks';
+import { updateCustomCards, updateFormValues, updateFormErrors } from '../../state/AppReducer';
 import './Form.css';
 import './Input.css';
 import Button from '../../components/UI/Button';
-import { AppContext } from '../../state/AppState';
 import { Numbers, IFormValues, ICustomDataElement, FormErrors } from '../../types';
 import {
   CHARACTER_GENDER,
@@ -12,14 +13,11 @@ import {
   FORM_SELECT_OPTIONS,
   FORM_SELECT_VALUES,
   ONE_SECOND,
-  REDUCER_ACTION_TYPES,
 } from '../../constants';
 
 const Form = (): JSX.Element => {
-  const {
-    state: { formPage },
-    dispatch,
-  } = useContext(AppContext);
+  const state = useAppSelector((state) => state.formState);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -30,7 +28,7 @@ const Form = (): JSX.Element => {
     getValues,
     trigger,
   } = useForm<IFormValues>({
-    mode: formPage.hasErrors ? 'onChange' : 'onSubmit',
+    mode: state.hasErrors ? 'onChange' : 'onSubmit',
     defaultValues: {
       name: EMPTY_STRING,
       status: false,
@@ -52,50 +50,39 @@ const Form = (): JSX.Element => {
       birthDate: data.birthday,
       avatar: data.avatar ? URL.createObjectURL(data.avatar[Numbers.Zero]) : EMPTY_STRING,
     };
-    dispatch({
-      type: REDUCER_ACTION_TYPES.updateCustomCards,
-      payload: newCustomCard,
-    });
-    dispatch({
-      type: REDUCER_ACTION_TYPES.updateFormErrors,
-      payload: false,
-    });
+    dispatch(updateCustomCards(newCustomCard));
+    dispatch(updateFormErrors(false));
     setTimeout((): void => {
       reset();
     }, ONE_SECOND);
   };
 
   const onError: SubmitHandler<FormErrors> = (): void => {
-    dispatch({
-      type: REDUCER_ACTION_TYPES.updateFormErrors,
-      payload: true,
-    });
+    dispatch(updateFormErrors(true));
   };
 
   useEffect((): VoidFunction => {
-    if (formPage.hasErrors) {
+    if (state.hasErrors) {
       trigger();
     }
-    setValue('name', formPage.name, { shouldDirty: true });
-    setValue('status', formPage.status, { shouldDirty: true });
-    setValue('species', formPage.species, { shouldDirty: true });
-    setValue('gender', formPage.gender, { shouldDirty: true });
-    setValue('birthday', formPage.birthday, { shouldDirty: true });
-    setValue('agreement', formPage.agreement, { shouldDirty: true });
+    setValue('name', state.name, { shouldDirty: true });
+    setValue('status', state.status, { shouldDirty: true });
+    setValue('species', state.species, { shouldDirty: true });
+    setValue('gender', state.gender, { shouldDirty: true });
+    setValue('birthday', state.birthday, { shouldDirty: true });
+    setValue('agreement', state.agreement, { shouldDirty: true });
 
     return (): void => {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.updateFormValues,
-        payload: {
+      dispatch(
+        updateFormValues({
           name: getValues('name'),
           status: getValues('status'),
           species: getValues('species'),
           gender: getValues('gender'),
           birthday: getValues('birthday'),
-          avatar: getValues('avatar'),
           agreement: getValues('agreement'),
-        },
-      });
+        })
+      );
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, getValues, setValue, trigger]);

@@ -1,26 +1,24 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../customHooks';
+import { updateSelectedCard, updateSelectedCustomCard } from '../../state/AppReducer';
 import CardItem from '../../components/CardItem';
-import { AppContext } from '../../state/AppState';
 import { ICustomDataElement, IDataElement } from '../../types';
-import { REDUCER_ACTION_TYPES } from '../../constants';
 import './CardPage.css';
 
 const CardPage = (): JSX.Element => {
-  const {
-    state: { mainPage, formPage },
-    dispatch,
-  } = useContext(AppContext);
+  const { mainState, formState } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   const { id } = useParams();
 
   let card: IDataElement | ICustomDataElement | undefined;
   if (id) {
     card =
-      mainPage.characters.find(
+      mainState.characters.find(
         (characterCard: IDataElement): boolean => characterCard.id === +id
       ) ||
-      formPage.characters.find(
+      formState.characters.find(
         (characterCard: ICustomDataElement): boolean => characterCard.id === id
       );
   }
@@ -28,26 +26,14 @@ const CardPage = (): JSX.Element => {
 
   useEffect((): VoidFunction => {
     if (card && (card as IDataElement).episode) {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.updateSelectedCard,
-        payload: card,
-      });
+      dispatch(updateSelectedCard(card as IDataElement));
     } else if (card && (card as ICustomDataElement).birthDate) {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.updateSelectedCustomCard,
-        payload: card,
-      });
+      dispatch(updateSelectedCustomCard(card as ICustomDataElement));
     }
 
     return (): void => {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.updateSelectedCard,
-        payload: null,
-      });
-      dispatch({
-        type: REDUCER_ACTION_TYPES.updateSelectedCustomCard,
-        payload: null,
-      });
+      dispatch(updateSelectedCard(null));
+      dispatch(updateSelectedCustomCard(null));
     };
   }, [card, dispatch]);
 

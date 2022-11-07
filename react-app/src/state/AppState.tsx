@@ -1,39 +1,11 @@
-import React, { createContext, ReactNode, useReducer } from 'react';
-import { IAppContext, IAppState, Numbers } from '../types';
-import { EMPTY_STRING, LOCAL_STORAGE_KEYS } from '../constants';
-import { appReducer } from './AppReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { mainPageReducer, formPageReducer } from './AppReducer';
 
-export const AppContext = createContext({} as IAppContext);
+const store = configureStore({
+  reducer: {
+    mainState: mainPageReducer,
+    formState: formPageReducer,
+  },
+});
 
-export const AppState = ({ children }: { children: ReactNode }): JSX.Element => {
-  const initialState: IAppState = {
-    mainPage: {
-      characters: [],
-      name: localStorage.getItem(LOCAL_STORAGE_KEYS.searchValue) || EMPTY_STRING,
-      isLoading: false,
-      errorMessage: null,
-      status: EMPTY_STRING,
-      gender: EMPTY_STRING,
-      alphabeticalOrder: EMPTY_STRING,
-      cardsPerPage: EMPTY_STRING,
-      pagesAmount: Numbers.One,
-      currentPage: Numbers.One,
-      selectedCharacter: null,
-    },
-    formPage: {
-      characters: [],
-      name: EMPTY_STRING,
-      status: false,
-      species: EMPTY_STRING,
-      gender: false,
-      birthday: EMPTY_STRING,
-      avatar: null,
-      agreement: false,
-      hasErrors: false,
-      selectedCharacter: null,
-    },
-  };
-  const [state, dispatch] = useReducer(appReducer, initialState);
-
-  return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
-};
+export default store;

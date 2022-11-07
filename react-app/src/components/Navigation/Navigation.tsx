@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppContext } from '../../state/AppState';
+import { useAppSelector } from '../../customHooks';
 import './Navigation.css';
 
 const Navigation = (): JSX.Element => {
-  const {
-    state: { mainPage, formPage },
-  } = useContext(AppContext);
+  const { mainState, formState } = useAppSelector((state) => state);
 
   return (
     <>
@@ -22,7 +20,7 @@ const Navigation = (): JSX.Element => {
         </NavLink>
         <NavLink
           className="navigation__link character-link"
-          to={`/characters/${mainPage.selectedCharacter?.id || formPage.selectedCharacter?.id}`}
+          to={`/characters/${mainState.selectedCharacter?.id || formState.selectedCharacter?.id}`}
         >
           Character
         </NavLink>
