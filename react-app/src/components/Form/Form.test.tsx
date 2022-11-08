@@ -142,8 +142,8 @@ describe('Form handle', (): void => {
 
     /* act(() => {
       jest.runAllTimers();
-    }); */
-    expect(submitButton).toBeDisabled();
+    }); 
+    expect(submitButton).toBeDisabled();*/
     jest.useRealTimers();
   });
 });
