@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { FieldErrorsImpl } from 'react-hook-form';
-import store from '../state/AppState';
+import store, { rootReducer } from '../state/AppState';
 
 export interface IDataElement {
   id: number;
@@ -157,6 +157,8 @@ export interface IPaginationProps {
   updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
 }
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
 
-export type AppDispatch = typeof store.dispatch;
+export type AppStore = ReturnType<typeof store>;
+
+export type AppDispatch = AppStore['dispatch'];
