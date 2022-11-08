@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { renderWithProviders } from '../../utils/testUtils';
 import userEvent from '@testing-library/user-event';
 import App from '../../components/App';
 
 describe('Form page', (): void => {
-  global.URL.createObjectURL = jest.fn();
   it('Should render card after submit', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    global.URL.createObjectURL = jest.fn();
+
+    renderWithProviders(<App />);
     const user = userEvent.setup();
     await user.click(screen.getByText('Form'));
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithProviders } from '../../utils/testUtils';
 import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
 import server from '../../mocks/server';
@@ -10,7 +10,7 @@ import { Numbers } from '../../types';
 
 describe('Main page', (): void => {
   it('Should render loader while waiting for data from API', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<App />);
 
     const loader = await screen.findByTestId('cards-loader');
 
@@ -20,7 +20,7 @@ describe('Main page', (): void => {
   });
 
   it('Should render cards according to API on upload', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<App />);
 
     const cards = await screen.findAllByTestId('main-page-character-card');
     expect(cards.length).toEqual(FAKE_CARDS_LENGTH);
@@ -35,7 +35,7 @@ describe('Main page', (): void => {
       })
     );
 
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<App />);
 
     const errorMessage = await screen.findByTestId('cards-error-message');
     expect(errorMessage).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('Main page', (): void => {
   });
 
   it('Should render cards after search submit', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<App />);
     const user = userEvent.setup();
     await user.type(screen.getByPlaceholderText(/Search by name../i), 'rick{enter}');
 

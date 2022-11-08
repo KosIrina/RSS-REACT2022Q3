@@ -1,23 +1,20 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { screen, fireEvent, act } from '@testing-library/react';
+import { renderWithProviders } from '../../utils/testUtils';
 import userEvent from '@testing-library/user-event';
 import { Numbers } from '../../types';
-import App from '../App';
+import Form from '.';
 
 describe('Form render', (): void => {
-  it('Should render form', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
-    const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
+  it('Should render form', (): void => {
+    renderWithProviders(<Form />);
     expect(screen.getByTestId('submit-form')).toBeInTheDocument();
   });
 
   it('Should render and update name input', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
     const input = screen.getByRole('textbox');
     const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
     expect(input).toBeInTheDocument();
     expect(input).toHaveValue('');
     await user.type(input, 'Bill Gates');
@@ -25,10 +22,9 @@ describe('Form render', (): void => {
   });
 
   it('Should render and update status input', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
     const input = screen.getByTestId('status-input');
     const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
     expect(input).toBeInTheDocument();
     expect(input).not.toBeChecked();
     await user.click(input);
@@ -36,11 +32,10 @@ describe('Form render', (): void => {
   });
 
   it('Should render and update species select', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
     const select = screen.getByRole('combobox');
     const optionToSelect = screen.getByRole('option', { name: 'Alien' }) as HTMLOptionElement;
     const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
     expect(select).toBeInTheDocument();
     expect(screen.getAllByRole('option').length).toEqual(Numbers.Four);
     await user.selectOptions(select, optionToSelect);
@@ -48,9 +43,8 @@ describe('Form render', (): void => {
   });
 
   it('Should render and update gender input', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
     const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
     const input = screen.getByTestId('gender-input');
     expect(input).toBeInTheDocument();
     expect(input).not.toBeChecked();
@@ -59,9 +53,8 @@ describe('Form render', (): void => {
   });
 
   it('Should render and update date input', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
     const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
     const input = screen.getByLabelText(/birth date:/i);
     expect(input).toBeInTheDocument();
     expect(input).toHaveValue('');
@@ -69,19 +62,16 @@ describe('Form render', (): void => {
     expect(input).toHaveValue('2022-02-02');
   });
 
-  it('Should render file input', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
-    const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
+  it('Should render file input', (): void => {
+    renderWithProviders(<Form />);
     const input = screen.getByLabelText(/photo:/i) as HTMLInputElement;
     expect(input).toBeInTheDocument();
     expect(input.files).toHaveLength(Numbers.Zero);
   });
 
   it('Should render and update agree input', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
     const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
     const input = screen.getByTestId('agree-input');
     expect(input).toBeInTheDocument();
     expect(input).not.toBeChecked();
@@ -89,10 +79,8 @@ describe('Form render', (): void => {
     expect(input).toBeChecked();
   });
 
-  it('Should render button', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
-    const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
+  it('Should render button', (): void => {
+    renderWithProviders(<Form />);
     const button = screen.getByText(/create character/i);
     expect(button).toBeInTheDocument();
     expect(button).toBeDisabled();
@@ -103,10 +91,9 @@ describe('Form handle', (): void => {
   global.URL.createObjectURL = jest.fn();
 
   it('Should show error messages on invalid data', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
 
     const user = userEvent.setup();
-    await user.click(screen.getByText('Form'));
     const nameInput = screen.getByRole('textbox');
     const submitButton = screen.getByText(/create character/i);
 
@@ -123,10 +110,9 @@ describe('Form handle', (): void => {
   });
 
   it('Should submit form on valid data', async (): Promise<void> => {
-    render(<App />, { wrapper: BrowserRouter });
+    renderWithProviders(<Form />);
 
     const user = userEvent.setup({ delay: null });
-    await user.click(screen.getByText('Form'));
     jest.useFakeTimers();
 
     const nameInput = screen.getByRole('textbox');
