@@ -82,7 +82,7 @@ export enum Numbers {
 }
 
 export interface ISearchBarProps {
-  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
+  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => void;
 }
 
 export interface IDataFromApi {
@@ -150,11 +150,11 @@ export interface ISelectProps {
 }
 
 export interface ICardsSortingProps {
-  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
+  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => void;
 }
 
 export interface IPaginationProps {
-  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => Promise<void>;
+  updateMainPageState: (newSearchParameter?: Record<string, unknown>) => void;
 }
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -162,3 +162,11 @@ export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof store>;
 
 export type AppDispatch = AppStore['dispatch'];
+
+export interface IRequestReturnedValues {
+  allCards: Data;
+  totalCards: number;
+  alphabeticalOrder: string;
+  amountPerPage: string;
+  currentPage: number;
+}

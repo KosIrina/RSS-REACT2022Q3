@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
-  Data,
   ICustomDataElement,
   IFormPageState,
   IMainPageState,
@@ -9,6 +8,8 @@ import {
   IDataElement,
 } from '../types';
 import { LOCAL_STORAGE_KEYS, EMPTY_STRING } from '../constants';
+import { fetchCharacters } from '../api/charactersApi';
+import procesApiData from '../utils/processApiData';
 
 const initialMainPageState: IMainPageState = {
   characters: [],
@@ -32,22 +33,6 @@ const mainPageSlice = createSlice({
       state.currentPage = Numbers.One;
       state.name = action.payload;
     },
-    callApi(state) {
-      state.isLoading = true;
-      state.errorMessage = null;
-    },
-    successApi(state, action: PayloadAction<{ data: Data; totalPages: number }>) {
-      state.isLoading = false;
-      state.errorMessage = null;
-      state.characters = action.payload.data;
-      state.pagesAmount = action.payload.totalPages;
-    },
-    errorApi(state, action: PayloadAction<string>) {
-      state.isLoading = false;
-      state.errorMessage = action.payload;
-      state.characters = [];
-      state.pagesAmount = Numbers.One;
-    },
     sortByStatus(state, action: PayloadAction<string>) {
       state.currentPage = Numbers.One;
       state.status = action.payload;
@@ -70,6 +55,25 @@ const mainPageSlice = createSlice({
     updateSelectedCard(state, action: PayloadAction<IDataElement | null>) {
       state.selectedCharacter = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCharacters.pending, (state) => {
+        state.isLoading = true;
+        state.errorMessage = null;
+      })
+      .addCase(fetchCharacters.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = null;
+        state.characters = procesApiData(action.payload).cards;
+        state.pagesAmount = procesApiData(action.payload).pagesAmount;
+      })
+      .addCase(fetchCharacters.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload as string;
+        state.characters = [];
+        state.pagesAmount = Numbers.One;
+      });
   },
 });
 
@@ -111,9 +115,6 @@ const formPageSlice = createSlice({
 
 export const {
   searchByName,
-  callApi,
-  successApi,
-  errorApi,
   sortByStatus,
   sortByGender,
   sortAlphabetically,
