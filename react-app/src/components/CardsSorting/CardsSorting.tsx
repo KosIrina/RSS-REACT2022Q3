@@ -30,7 +30,7 @@ const CardsSorting = (props: ICardsSortingProps): JSX.Element => {
               ? EMPTY_STRING
               : event.target.value;
           dispatch(sortByStatus(newParameter));
-          await props.updateMainPageState({ status: newParameter, currentPage: Numbers.One });
+          props.updateMainPageState({ status: newParameter, currentPage: Numbers.One });
         }}
       />
 
@@ -47,7 +47,7 @@ const CardsSorting = (props: ICardsSortingProps): JSX.Element => {
               ? EMPTY_STRING
               : event.target.value;
           dispatch(sortByGender(newParameter));
-          await props.updateMainPageState({ gender: newParameter, currentPage: Numbers.One });
+          props.updateMainPageState({ gender: newParameter, currentPage: Numbers.One });
         }}
       />
 
@@ -64,9 +64,9 @@ const CardsSorting = (props: ICardsSortingProps): JSX.Element => {
               ? EMPTY_STRING
               : event.target.value;
           dispatch(sortAlphabetically(newParameter));
-          await props.updateMainPageState({
+          props.updateMainPageState({
             alphabeticalOrder: newParameter,
-            currentPage: Numbers.One,
+            currentPage: state.currentPage,
           });
         }}
       />
@@ -80,7 +80,7 @@ const CardsSorting = (props: ICardsSortingProps): JSX.Element => {
         selectedValue={state.cardsPerPage}
         onChange={async (event: ChangeEvent<HTMLSelectElement>): Promise<void> => {
           dispatch(changeCardsPerPage(event.target.value));
-          await props.updateMainPageState({
+          props.updateMainPageState({
             amountPerPage: event.target.value,
             currentPage: Numbers.One,
           });

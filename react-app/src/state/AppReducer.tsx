@@ -9,7 +9,6 @@ import {
 } from '../types';
 import { LOCAL_STORAGE_KEYS, EMPTY_STRING } from '../constants';
 import { fetchCharacters } from '../api/charactersApi';
-import procesApiData from '../utils/processApiData';
 
 const initialMainPageState: IMainPageState = {
   characters: [],
@@ -42,7 +41,6 @@ const mainPageSlice = createSlice({
       state.gender = action.payload;
     },
     sortAlphabetically(state, action: PayloadAction<string>) {
-      state.currentPage = Numbers.One;
       state.alphabeticalOrder = action.payload;
     },
     changeCardsPerPage(state, action: PayloadAction<string>) {
@@ -65,8 +63,8 @@ const mainPageSlice = createSlice({
       .addCase(fetchCharacters.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorMessage = null;
-        state.characters = procesApiData(action.payload).cards;
-        state.pagesAmount = procesApiData(action.payload).pagesAmount;
+        state.characters = action.payload.cards;
+        state.pagesAmount = action.payload.pagesAmount;
       })
       .addCase(fetchCharacters.rejected, (state, action) => {
         state.isLoading = false;

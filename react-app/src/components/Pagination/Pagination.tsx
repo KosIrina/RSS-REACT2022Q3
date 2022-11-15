@@ -21,7 +21,7 @@ const Pagination = (props: IPaginationProps): JSX.Element => {
         selectedValue={state.currentPage}
         onChange={async (event: ChangeEvent<HTMLSelectElement>): Promise<void> => {
           dispatch(changePage(event.target.value));
-          await props.updateMainPageState({ currentPage: event.target.value });
+          props.updateMainPageState({ currentPage: event.target.value });
         }}
       />
       <span className="pagination-container__pages-separator">/</span>

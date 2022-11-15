@@ -164,9 +164,6 @@ export type AppStore = ReturnType<typeof store>;
 export type AppDispatch = AppStore['dispatch'];
 
 export interface IRequestReturnedValues {
-  allCards: Data;
-  totalCards: number;
-  alphabeticalOrder: string;
-  amountPerPage: string;
-  currentPage: number;
+  cards: Data;
+  pagesAmount: number;
 }

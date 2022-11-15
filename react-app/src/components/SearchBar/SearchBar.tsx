@@ -21,7 +21,7 @@ const SearchBar = (props: ISearchBarProps): JSX.Element => {
   const onFormSubmit = async (event: KeyboardEvent<HTMLInputElement>): Promise<void> => {
     if (event.code === ENTER_KEY_CODES.enter || event.code === ENTER_KEY_CODES.enterNumpad) {
       event.preventDefault();
-      await props.updateMainPageState({ name: state.name, currentPage: Numbers.One });
+      props.updateMainPageState({ name: state.name, currentPage: Numbers.One });
     }
   };
 

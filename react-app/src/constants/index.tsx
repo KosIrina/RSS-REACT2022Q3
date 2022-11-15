@@ -64,19 +64,11 @@ export const CARDS_PER_PAGE = {
     inputValue: '20 items/page',
     numericValue: 20,
   },
-  thirty: {
-    inputValue: '30 items/page',
-    numericValue: 30,
-  },
 };
 
 export const SEARCH_SELECT_OPTIONS = {
   byStatus: ['--by status--', 'alive', 'dead', 'unknown'],
   byGender: ['--by gender--', 'female', 'male', 'genderless', 'unknown'],
   alphabetically: ['--alphabetically--', ALPHABETICAL_SORT.ascending, ALPHABETICAL_SORT.descending],
-  cardsPerPage: [
-    CARDS_PER_PAGE.ten.inputValue,
-    CARDS_PER_PAGE.twenty.inputValue,
-    CARDS_PER_PAGE.thirty.inputValue,
-  ],
+  cardsPerPage: [CARDS_PER_PAGE.ten.inputValue, CARDS_PER_PAGE.twenty.inputValue],
 };

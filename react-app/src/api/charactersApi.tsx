@@ -1,12 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Numbers, Data, IDataFromApi, IRequestParameters, IRequestReturnedValues } from 'types';
+import { Numbers, IDataFromApi, IRequestParameters, IRequestReturnedValues } from 'types';
 import {
   EMPTY_STRING,
   URL_BASE,
   URL_ENDPOINTS,
   URL_QUERY_KEYS,
   API_ERROR_MESSAGES,
+  CARDS_PER_PAGE,
 } from '../constants';
+import transformPerPageToNumeric from '../utils/transformPerPageToNumeric';
+import sortAlphabetically from '../utils/sortAlphabetically';
 
 export const fetchCharacters = createAsyncThunk<
   IRequestReturnedValues,
@@ -26,6 +29,12 @@ export const fetchCharacters = createAsyncThunk<
     } = {},
     { rejectWithValue }
   ) {
+    const cardsOnPageAmount = transformPerPageToNumeric(amountPerPage);
+    if (cardsOnPageAmount === CARDS_PER_PAGE.ten.numericValue) {
+      pageInApi = Math.ceil(currentPage / Numbers.Two);
+    } else {
+      pageInApi = currentPage;
+    }
     try {
       const url = `${URL_BASE}/${URL_ENDPOINTS.character}/?${URL_QUERY_KEYS.name}=${name}&${URL_QUERY_KEYS.page}=${pageInApi}&${URL_QUERY_KEYS.status}=${status}&${URL_QUERY_KEYS.gender}=${gender}`;
       const response = await fetch(url);
@@ -34,30 +43,16 @@ export const fetchCharacters = createAsyncThunk<
       }
       const data: IDataFromApi = await response.json();
       const totalCards: number = data.info.count;
+      const totalPages: number = Math.ceil(totalCards / cardsOnPageAmount);
       let allApiCards = data.results;
-      if (data.info.next) {
-        allApiCards = [
-          ...allApiCards,
-          ...(
-            (await getAllApiCharacters(
-              {
-                name: name,
-                pageInApi: pageInApi + Numbers.One,
-                status: status,
-                gender: gender,
-              },
-              { rejectWithValue }
-            )) as { allCards: Data; totalCards: number }
-          ).allCards,
-        ];
+      if (cardsOnPageAmount === CARDS_PER_PAGE.ten.numericValue) {
+        allApiCards =
+          currentPage % Numbers.Two === Numbers.Zero
+            ? [...allApiCards.slice(CARDS_PER_PAGE.ten.numericValue)]
+            : [...allApiCards.slice(Numbers.Zero, CARDS_PER_PAGE.ten.numericValue)];
       }
-      return {
-        allCards: allApiCards,
-        totalCards: totalCards,
-        alphabeticalOrder,
-        amountPerPage,
-        currentPage,
-      };
+      sortAlphabetically(allApiCards, alphabeticalOrder);
+      return { cards: allApiCards, pagesAmount: totalPages };
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : API_ERROR_MESSAGES.unknown);
     }
