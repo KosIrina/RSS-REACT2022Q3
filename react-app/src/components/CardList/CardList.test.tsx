@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import MainPage from '../../pages/MainPage';
 import FormPage from '../../pages/FormPage';
 import App from '../App';
-import CharactersInfo from '../../data/universe-characters.json';
+import сharactersInfo from '../../data/universe-characters.json';
 import { Numbers } from '../../types';
 
 describe('CardList', (): void => {
@@ -17,7 +17,7 @@ describe('CardList', (): void => {
   it('Should contain the appropriate amount of cards', async (): Promise<void> => {
     renderWithProviders(<MainPage />);
     expect((await screen.findAllByTestId('main-page-character-card')).length).toEqual(
-      CharactersInfo.length
+      сharactersInfo.length
     );
   });
 });

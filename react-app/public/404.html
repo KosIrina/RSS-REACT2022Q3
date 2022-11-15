@@ -4,26 +4,26 @@
     <meta charset="utf-8" />
     <title>Single Page Apps for GitHub Pages</title>
     <script type="text/javascript">
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol +
+      const pathSegmentsToKeep = 1;
+      const location = window.location;
+      location.replace(
+        location.protocol +
           '//' +
-          l.hostname +
-          (l.port ? ':' + l.port : '') +
-          l.pathname
+          location.hostname +
+          (location.port ? ':' + location.port : '') +
+          location.pathname
             .split('/')
             .slice(0, 1 + pathSegmentsToKeep)
             .join('/') +
           '/?/' +
-          l.pathname
+          location.pathname
             .slice(1)
             .split('/')
             .slice(pathSegmentsToKeep)
             .join('/')
             .replace(/&/g, '~and~') +
-          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          l.hash
+          (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
+          location.hash
       );
     </script>
   </head>
