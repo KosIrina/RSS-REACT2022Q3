@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/kosirina-REACT2022Q3/static/css/main.fe9d6c50.css",
-    "main.js": "/kosirina-REACT2022Q3/static/js/main.47568978.js",
+    "main.js": "/kosirina-REACT2022Q3/static/js/main.6ab2ff4b.js",
     "static/media/logo.png": "/kosirina-REACT2022Q3/static/media/logo.871e166efc578858ff13.png",
     "static/media/JosefinSans-Regular.ttf": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.0e82e3d2c82cf1e38a33.ttf",
     "static/media/JosefinSans-Regular.woff": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.af4e134a3d252c2c7aa5.woff",
@@ -13,10 +13,10 @@
     "static/media/magnifier.svg": "/kosirina-REACT2022Q3/static/media/magnifier.1265fa50e6330c05b24d.svg",
     "static/media/cross.svg": "/kosirina-REACT2022Q3/static/media/cross.e7ec03580e1496053d1d.svg",
     "main.fe9d6c50.css.map": "/kosirina-REACT2022Q3/static/css/main.fe9d6c50.css.map",
-    "main.47568978.js.map": "/kosirina-REACT2022Q3/static/js/main.47568978.js.map"
+    "main.6ab2ff4b.js.map": "/kosirina-REACT2022Q3/static/js/main.6ab2ff4b.js.map"
   },
   "entrypoints": [
     "static/css/main.fe9d6c50.css",
-    "static/js/main.47568978.js"
+    "static/js/main.6ab2ff4b.js"
   ]
 }
