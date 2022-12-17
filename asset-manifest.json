@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/kosirina-REACT2022Q3/static/css/main.fe9d6c50.css",
-    "main.js": "/kosirina-REACT2022Q3/static/js/main.6ab2ff4b.js",
-    "static/media/logo.png": "/kosirina-REACT2022Q3/static/media/logo.871e166efc578858ff13.png",
-    "static/media/JosefinSans-Regular.ttf": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.0e82e3d2c82cf1e38a33.ttf",
-    "static/media/JosefinSans-Regular.woff": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.af4e134a3d252c2c7aa5.woff",
-    "static/media/JosefinSans-Regular.woff2": "/kosirina-REACT2022Q3/static/media/JosefinSans-Regular.523d20efc041487b4205.woff2",
-    "static/media/HitchHike.ttf": "/kosirina-REACT2022Q3/static/media/HitchHike.b94dbf1531e505420d4d.ttf",
-    "static/media/HitchHike.woff": "/kosirina-REACT2022Q3/static/media/HitchHike.4ddf2565f03901eba6d1.woff",
-    "static/media/HitchHike.woff2": "/kosirina-REACT2022Q3/static/media/HitchHike.7d152ab39dc413ae40b2.woff2",
-    "index.html": "/kosirina-REACT2022Q3/index.html",
-    "static/media/magnifier.svg": "/kosirina-REACT2022Q3/static/media/magnifier.1265fa50e6330c05b24d.svg",
-    "static/media/cross.svg": "/kosirina-REACT2022Q3/static/media/cross.e7ec03580e1496053d1d.svg",
-    "main.fe9d6c50.css.map": "/kosirina-REACT2022Q3/static/css/main.fe9d6c50.css.map",
-    "main.6ab2ff4b.js.map": "/kosirina-REACT2022Q3/static/js/main.6ab2ff4b.js.map"
+    "main.css": "/RSS-REACT2022Q3/static/css/main.6f5dd716.css",
+    "main.js": "/RSS-REACT2022Q3/static/js/main.ad0602c7.js",
+    "static/media/logo.png": "/RSS-REACT2022Q3/static/media/logo.871e166efc578858ff13.png",
+    "static/media/JosefinSans-Regular.ttf": "/RSS-REACT2022Q3/static/media/JosefinSans-Regular.0e82e3d2c82cf1e38a33.ttf",
+    "static/media/JosefinSans-Regular.woff": "/RSS-REACT2022Q3/static/media/JosefinSans-Regular.af4e134a3d252c2c7aa5.woff",
+    "static/media/JosefinSans-Regular.woff2": "/RSS-REACT2022Q3/static/media/JosefinSans-Regular.523d20efc041487b4205.woff2",
+    "static/media/HitchHike.ttf": "/RSS-REACT2022Q3/static/media/HitchHike.b94dbf1531e505420d4d.ttf",
+    "static/media/HitchHike.woff": "/RSS-REACT2022Q3/static/media/HitchHike.4ddf2565f03901eba6d1.woff",
+    "static/media/HitchHike.woff2": "/RSS-REACT2022Q3/static/media/HitchHike.7d152ab39dc413ae40b2.woff2",
+    "index.html": "/RSS-REACT2022Q3/index.html",
+    "static/media/magnifier.svg": "/RSS-REACT2022Q3/static/media/magnifier.1265fa50e6330c05b24d.svg",
+    "static/media/cross.svg": "/RSS-REACT2022Q3/static/media/cross.e7ec03580e1496053d1d.svg",
+    "main.6f5dd716.css.map": "/RSS-REACT2022Q3/static/css/main.6f5dd716.css.map",
+    "main.ad0602c7.js.map": "/RSS-REACT2022Q3/static/js/main.ad0602c7.js.map"
   },
   "entrypoints": [
-    "static/css/main.fe9d6c50.css",
-    "static/js/main.6ab2ff4b.js"
+    "static/css/main.6f5dd716.css",
+    "static/js/main.ad0602c7.js"
   ]
 }
